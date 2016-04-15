@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 ceci est un brainfuck
 ceci est un test avec un merge dedans
+=======
+ceci est un test123
+>>>>>>> 595fd3941f10895f64f36c4bcf92f7dec0daee3e
