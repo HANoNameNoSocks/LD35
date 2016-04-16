@@ -9,6 +9,7 @@ ItemManager.prototype.create = function create() {
 ItemManager.prototype.update = function update() {
 };
 
-function createItem(data) {
+ItemManager.prototype.createItem = function createItem(data) {
+	console.log("start of createItem");
 	this.currentItem = new Item(this.game, data);
 };
