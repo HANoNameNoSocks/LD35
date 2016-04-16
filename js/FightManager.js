@@ -11,9 +11,9 @@ FightManager.prototype.create = function create() {
 
 FightManager.prototype.update = function update() {
 
-	if(ennemy.getPosX < 500 && ennemy.getPosX > 300 && player.isAlive() && ennemy.isAlive()) {
+	if( ( ennemy.getPosX < 500 ) && ( ennemy.getPosX > 300 ) && ( player.isDead == false ) && ( ennemy.isDead() == false ) {
 
-		if( (player.getType == 'Feu') && (ennemy.getType == 'Plante') || (player.getType == 'Plante') && (ennemy.getType == 'Eau') || (player.getType == 'Eau') &&  (ennemy.getType == 'Feu') )
+		if( (player.getType == 'fire') && (ennemy.getType == 'plant') || (player.getType == 'plant') && (ennemy.getType == 'water') || (player.getType == 'water') &&  (ennemy.getType == 'fire') )
 		{
 			ennemy.isAlive() = false;
 			return 1;
@@ -23,7 +23,7 @@ FightManager.prototype.update = function update() {
 			ennemy.isAlive() = false;
 			return 0;
 		}
-		else if ( (player.getType == 'Feu') && (ennemy.getType == 'Eau') ||  (player.getType == 'Plante') && (ennemy.getType == 'Feu') || (player.getType == 'Eau') && (ennemy.getType == 'Plante') )
+		else if ( (player.getType == 'fire') && (ennemy.getType == 'water') ||  (player.getType == 'plant') && (ennemy.getType == 'fire') || (player.getType == 'water') && (ennemy.getType == 'plant') )
 		{
 			return -1;
 		}
