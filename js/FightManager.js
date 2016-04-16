@@ -1,15 +1,12 @@
-function FightManager(game,ennemy,player) {
+function FightManager(game) {
 	this.game = game ;
-	this.ennemy = ennemy ;
-	this.player = player ;
-	
 };
 
 FightManager.prototype.create = function create() {
 	
 };
 
-FightManager.prototype.update = function update() {
+FightManager.prototype.fight = function fight(ennemy,player) {
 
 	if( ( ennemy.getPosX < 500 ) && ( ennemy.getPosX > 300 ) && ( player.isDead == false ) && ( ennemy.isDead() == false ) )
 	{
@@ -37,3 +34,8 @@ FightManager.prototype.update = function update() {
 	}
 
 };
+
+FightManager.prototype.update = function update() {
+	
+};
+

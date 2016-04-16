@@ -24,15 +24,15 @@ theGame.prototype = {
   		this.ennemyManager = new EnnemyManager();
   		this.ennemyManager.create();
 
-  		this.ennemy = ennemyManager.getEnnemy();
+  		this.ennemy = this.ennemyManager.getEnnemy();
 	},
 
 	update: function() {
 		this.ennemy = this.ennemyManager.getEnnemy();
 
-		if (this.referee.hasLost()) {
+		if (this.referee.hasLost) {
 			this.lose();
-		} else if (this.referee.hasWon()) {
+		} else if (this.referee.hasWon) {
 			this.win();
 		} else {
 			if (this.hero.isFighting && !this.ennemy.isDead) {
@@ -44,7 +44,6 @@ theGame.prototype = {
 
 		this.hero.update();	
 		this.ennemyManager.update();
-		this.fightManager.update();
 		this.referee.update();
 	},
 

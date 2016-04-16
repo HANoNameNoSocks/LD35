@@ -1,12 +1,12 @@
 var EnnemyManager = function(game) {
-	this.currentSpeed = 50;
+	this.currentSpeed = -50;
 	this.upSpeed = 20;
 	this.currentEnnemy = null;
 }
 
 EnnemyManager.prototype = {
     create: function() {
-		this.currentEnnemy = new Ennemy(game, currentSpeed, this.randomIntFromInterval(1,3) - 1);
+		this.currentEnnemy = new Ennemy(game, this.currentSpeed, this.randomIntFromInterval(1,3) - 1);
 		this.currentEnnemy.create();
     },
 
@@ -27,7 +27,7 @@ EnnemyManager.prototype = {
     },
 	
 	initEnnemy : function(){
-		this.currentEnnemy = new Ennemy(game, currentSpeed, randomIntFromInterval(1,3));
+		this.currentEnnemy = new Ennemy(game, this.currentSpeed, this.randomIntFromInterval(1,3));
 		this.currentEnnemy.create();
 		this.currentEnnemy.update();
 	},
