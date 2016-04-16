@@ -12,9 +12,9 @@ function RefereeManager(game) {
 
 RefereeManager.prototype.create = function create() {
 	this.itemManager = new ItemManager(this.game);
-	this.itemManager.createItem(getData());
-	this.currentCounter = 0;
 	this.tempNames = this.names;
+	this.itemManager.createItem(this.getData());
+	this.currentCounter = 0;
 }
 
 RefereeManager.prototype.update = function update() {
@@ -22,11 +22,11 @@ RefereeManager.prototype.update = function update() {
 
 function judge(data) {
 	if (data == 1) {
-		playerWonAFight()
+		this.playerWonAFight()
 	} else if (data == 0) {
-		playerDrawAFight();
+		this.playerDrawAFight();
 	} else if (data == -1) {
-		playerLoseAFight();
+		this.playerLoseAFight();
 	}
 }
 
@@ -36,7 +36,7 @@ function playerWonAFight() {
 		if (++this.limit >= this.items.length) {
 			this.hasWon = true;
 		} else {
-			this.itemManager.createItem(getData());
+			this.itemManager.createItem(this.getData());
 			this.currentCounter = 0;
 		}
 	}
@@ -51,14 +51,14 @@ function playerLoseAFight() {
 };
 
 function getData() {
-	return {name : getName(), counter : Math.floor((Math.random() * 10) + 1), type : getType()};
+	return {name : this.getName(), counter : Math.floor((Math.random() * 10) + 1), type : this.getType()};
 };
 
 function getName() {
-	var name = this.tempNames[Math.floor((Math.random() * tempNames.length))];
-	var idx = tempNames.indexOf(name);
+	var name = this.tempNames[Math.floor((Math.random() * this.tempNames.length))];
+	var idx = this.tempNames.indexOf(name);
 	this.tempNames.splice(idx, 1);
-	if (tempNames.length == 0) {
+	if (this.tempNames.length == 0) {
 		this.tempNames = this.names;
 	}
 	return name;
