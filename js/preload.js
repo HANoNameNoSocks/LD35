@@ -18,11 +18,7 @@ preload.prototype = {
 		this.game.load.image('plantdead','assets/img/plantdead.png');
 		this.game.load.image('waterdead','assets/img/waterdead.png');
 
-		this.game.load.spritesheet('sprfire', 'assets/img/fire34x33x2.png', 34,33,2);
-		this.game.load.spritesheet('sprplant', 'assets/img/plant34x33x2.png', 34,33,2);
-		this.game.load.spritesheet('sprwater', 'assets/img/water34x33x2.png', 34,33,2);
-
-		this.game.load.image("hero", "assets/hero.png");
+		this.game.load.image("hero", "assets/img/hero.png");
 	},
   	create: function(){
 		this.game.state.start("GameTitle");

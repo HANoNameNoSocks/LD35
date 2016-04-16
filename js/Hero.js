@@ -1,7 +1,7 @@
 function Hero(game) {
 	this.game = game;
 	this.sprite = null;
-	this.posX = 800;
+	this.posX = 200;
 	this.posY = 566;
 
 	this.isDead = false;
@@ -11,6 +11,8 @@ function Hero(game) {
 	this.firebutton = null;
 	this.plant = null;
 	this.water = null;
+
+	this.attackType = null;
 	
 };
 
@@ -54,7 +56,7 @@ Hero.prototype.getType = function getType() {
 	return this.attackType;
 };
 
-Hero.prototype.setIsDead = function isDead(isDead) {
+Hero.prototype.setIsDead = function setIsDead(isDead) {
 	this.isDead = isDead;
 };
 

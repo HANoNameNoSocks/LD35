@@ -6,24 +6,30 @@ FightManager.prototype.create = function create() {
 	
 };
 
-FightManager.prototype.fight = function fight(ennemy,player) {
+FightManager.prototype.fight = function fight(player,ennemy) {
 
 	if( ( ennemy.getPosX < 500 ) && ( ennemy.getPosX > 300 ) && ( player.isDead == false ) && ( ennemy.isDead() == false ) )
 	{
+		console.log('fight processing');
+		console.log('ennemy type : ' + ennemy.getType());
+		console.log('player type : ' + player.getType());
 
-		if( (player.getType == 'fire') && (ennemy.getType == 'plant') || (player.getType == 'plant') && (ennemy.getType == 'water') || (player.getType == 'water') &&  (ennemy.getType == 'fire') )
+		if( ((player.getType() == 'fire') && (ennemy.getType() == 'plant')) || ((player.getType() == 'plant') && (ennemy.getType() == 'water')) || ((player.getType() == 'water') &&  (ennemy.getType() == 'fire')))
 		{
-			ennemy.isDead() = true;
+			ennemy.setisDead(true);
+			console.log('dead ennemy');
 			return 1;
 		}
-		else if( player.getType == ennemy.getType )
+		else if( player.getType() == ennemy.getType() )
 		{
-			ennemy.isDead() = true;
+			ennemy.setisDead(true);
+			console.log('dead ennemy');
 			return 0;
 		}
-		else if ( (player.getType == 'fire') && (ennemy.getType == 'water') ||  (player.getType == 'plant') && (ennemy.getType == 'fire') || (player.getType == 'water') && (ennemy.getType == 'plant') )
+		else if ( ((player.getType() == 'fire') && (ennemy.getType() == 'water')) ||  ((player.getType() == 'plant') && (ennemy.getType() == 'fire')) || ((player.getType() == 'water') && (ennemy.getType() == 'plant')))
 		{
-			player.isDead() = true;
+			player.setIsDead(true);
+			console.log('dead player');
 			return -1;
 		}
 
