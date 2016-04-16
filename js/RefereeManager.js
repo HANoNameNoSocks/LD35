@@ -24,9 +24,9 @@ RefereeManager.prototype.create = function create() {
 RefereeManager.prototype.update = function update() {
 };
 
-RefereeManager.prototype.judge = function judge(data) {
+RefereeManager.prototype.judge = function judge(data, enemy) {
 	if (data == 1) {
-		this.playerWonAFight()
+		this.playerWonAFight(enemy);
 	} else if (data == 0) {
 		this.playerDrawAFight();
 	} else if (data == -1) {
@@ -34,8 +34,8 @@ RefereeManager.prototype.judge = function judge(data) {
 	}
 }
 
-function playerWonAFight() {
-	if ((this.itemManager.currentItem.type == "any" || this.itemManager.currentItem.type == this.enemy.type) && ++this.currentCounter == this.itemManager.currentItem.counter) {
+RefereeManager.prototype.playerWonAFight =  function playerWonAFight(enemy) {
+	if ((this.itemManager.currentItem.type == "any" || this.itemManager.currentItem.type == enemy.getType()) && ++this.currentCounter == this.itemManager.currentItem.counter) {
 		this.retrievedItems.push(this.currentItem);
 		if (++this.limit >= this.items.length) {
 			this.hasWon = true;
@@ -46,11 +46,11 @@ function playerWonAFight() {
 	}
 };
 
-function playerDrawAFight() {
+RefereeManager.prototype.playerDrawAFight = function playerDrawAFight() {
 	this.currentCounter = 0;
 };
 
-function playerLoseAFight() {
+RefereeManager.prototype.playerLoseAFight =  function playerLoseAFight() {
 	this.hasLost = true;
 };
 

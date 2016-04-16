@@ -27,7 +27,7 @@ EnnemyManager.prototype = {
     },
 	
 	initEnnemy : function(){
-		this.currentEnnemy = new Ennemy(game, this.currentSpeed, this.randomIntFromInterval(1,3));
+		this.currentEnnemy = new Ennemy(game, this.currentSpeed, this.randomIntFromInterval(1,3) -1);
 		this.currentEnnemy.create();
 		this.currentEnnemy.update();
 	},

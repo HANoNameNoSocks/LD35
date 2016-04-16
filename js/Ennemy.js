@@ -13,6 +13,7 @@ function Ennemy(game, velocity, type) {
 var key1;
 var arr = ["fire", "water","plant"];
 var arrDead = ["firedead","waterdead","plantdead"];
+
 Ennemy.prototype.create = function create() {
     game.stage.backgroundColor = '#736357';
 
@@ -40,7 +41,7 @@ Ennemy.prototype.update = function update() {
 
 Ennemy.prototype.setisDead = function setisDead(isdead) {
 
-	this.isDead = isDead;
+	this.isDead = isdead;
 };
 
 Ennemy.prototype.getPosX = function getPosX(){
@@ -54,12 +55,12 @@ Ennemy.prototype.getType = function getType() {
 
 Ennemy.prototype.destroy = function destroy () {
 
-    sprite.destroy();
+    this.ennemySprite.destroy();
 };
 
 Ennemy.prototype.kill = function kill () {
 
-	//DOSOMETHING
+	this.ennemySprite.destroy();
 };
 
 
