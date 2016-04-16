@@ -17,6 +17,7 @@ FightManager.prototype.fight = function fight(player,ennemy) {
 		}
 		else if( player.getType() == ennemy.getType() )
 		{
+			ennemy.setisDraw(true);
 			return 0;
 		}
 		else if ( ((player.getType() == 'fire') && (ennemy.getType() == 'water')) ||  ((player.getType() == 'plant') && (ennemy.getType() == 'fire')) || ((player.getType() == 'water') && (ennemy.getType() == 'plant')))
@@ -25,14 +26,13 @@ FightManager.prototype.fight = function fight(player,ennemy) {
 			return -1;
 		}
 	}
-	else if((player.getType() == null) && ( ennemy.getPosX() < 250 ))
+	else if((player.getType() == null) && ( ennemy.getPosX() < 250 )  && ( ennemy.getisDraw() == false ))
 	{
 			player.setIsDead(true);
 			return -1;
 	}
 	else
 	{
-		console.log('Null : Position = '+ennemy.getPosX() );
 		return null;
 	}
 };

@@ -8,6 +8,7 @@ function Ennemy(game, velocity, type) {
 	this.posX = 800;
 	this.posY = 566;
 	this.isDead = false;
+	this.isDraw = false;
 };
 
 var key1;
@@ -44,9 +45,19 @@ Ennemy.prototype.update = function update() {
 };
 
 
-Ennemy.prototype.setisDead = function setisDead(isdead) {
+Ennemy.prototype.setisDead = function setisDead(isDead) {
 
-	this.isDead = isdead;
+	this.isDead = isDead;
+};
+
+Ennemy.prototype.setisDraw = function setisDraw(isDraw) {
+
+	this.isDraw = isDraw;
+};
+
+Ennemy.prototype.getisDraw = function getisDraw() {
+
+	return this.isDraw;
 };
 
 Ennemy.prototype.getPosX = function getPosX(){
