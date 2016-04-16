@@ -15,7 +15,7 @@ theGame.prototype = {
   		this.hero = new Hero(this.game);
   		this.hero.create();
 
-  		this.referee = new ReferyManager(this.game);
+  		this.referee = new RefereeManager(this.game);
   		this.referee.create();
 
   		this.fightManager = new FightManager();
