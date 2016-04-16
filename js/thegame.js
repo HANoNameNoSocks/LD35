@@ -39,7 +39,7 @@ theGame.prototype = {
 			console.log('you win');
 			this.win();
 		} else {
-			if (this.hero.isFighting && !this.ennemy.isDead) {
+			if (!this.ennemy.isDead) {
 				console.log('FIGHT');
 				var fightResult = this.fightManager.fight(this.hero, this.ennemy);
 

@@ -45,6 +45,7 @@ Ennemy.prototype.setisDead = function setisDead(isdead) {
 };
 
 Ennemy.prototype.getPosX = function getPosX(){
+	console.log()
 	return this.ennemySprite.x;
 };
 
