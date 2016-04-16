@@ -10,6 +10,8 @@ preload.prototype = {
 		this.game.load.image("gameover","assets/gameover.png");
 		this.game.load.image("victory","assets/victory.png");
 		this.game.load.image("playRules","assets/playRules.png");
+
+		this.game.load.image("hero", "assets/hero.png");
 	},
   	create: function(){
 		this.game.state.start("GameTitle");
