@@ -13,7 +13,7 @@ function Ennemy(game, velocity, type) {
 var key1;
 var arr = ["fire", "water","plant"];
 var arrDead = ["firedead","waterdead","plantdead"];
-
+var arrMonkey = ["sprFire","sprWater","sprPlant"];
 Ennemy.prototype.create = function create() {
     game.stage.backgroundColor = '#736357';
 
@@ -22,14 +22,19 @@ Ennemy.prototype.create = function create() {
 
 	// PHYSICS PROPERTIES
 
-	this.ennemySprite = this.game.add.sprite(this.posX,this.posY, arr[this.type]);
+    this.ennemySprite = game.add.sprite(700, 566, arrMonkey[this.type]);
+
+    this.ennemySprite.animations.add('walk', [0, 1, 2, 3, 4]);
+
+    this.ennemySprite.animations.play('walk', 3000, true);
+
+
 
 	// PHYSICS PROPERTIES
-	this.ennemySprite.anchor.setTo(0.5, 0);
 	this.game.physics.arcade.enable(this.ennemySprite);
 	this.ennemySprite.enableBody = true;
 
-	this.ennemySprite.body.gravity.x = this.velocity;
+	this.ennemySprite.body.velocity.x = this.velocity;
 
 
 };
@@ -60,9 +65,20 @@ Ennemy.prototype.destroy = function destroy () {
 };
 
 Ennemy.prototype.kill = function kill () {
+  	var start = new Date().getTime();
+ 	var oldX = this.ennemySprite.x;
+  	this.ennemySprite.destroy();
+  	this.ennemySprite = game.add.sprite(oldX, 566, arrMonkey[this.type]);
+  	this.ennemySprite.animations.add('walk', [12, 13, 14, 15]);
+  	this.game.physics.arcade.enable(this.ennemySprite);
 
-	this.ennemySprite.destroy();
-};
+	this.ennemySprite.enableBody = true;
+	this.ennemySprite.body.velocity.x = 0;
+	this.ennemySprite.animations.play('walk', 3000, true);
+    game.time.events.add(2000, this.destroy, this);
+
+
+  	};
 
 
 
