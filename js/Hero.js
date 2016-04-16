@@ -3,6 +3,8 @@ function Hero(game) {
 	this.sprite = null ;
 	this.posX = 0 ;
 	this.posY = 0 ;
+
+	this.isDead = false;
 	
 };
 
@@ -21,6 +23,14 @@ Hero.prototype.create = function create() {
 
 Hero.prototype.update = function update() {
 	
+};
+
+Hero.prototype.isDead = function isDead() {
+	return this.isDead;
+};
+
+Hero.prototype.destroy = function destroy() {
+
 };
 
 
