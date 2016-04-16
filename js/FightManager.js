@@ -11,7 +11,7 @@ FightManager.prototype.create = function create() {
 
 FightManager.prototype.update = function update() {
 
-	if( ( ennemy.getPosX < 500 ) && ( ennemy.getPosX > 300 ) && ( player.isDead == false ) && ( ennemy.isDead() == false ) 
+	if( ( ennemy.getPosX < 500 ) && ( ennemy.getPosX > 300 ) && ( player.isDead == false ) && ( ennemy.isDead() == false ) )
 	{
 
 		if( (player.getType == 'fire') && (ennemy.getType == 'plant') || (player.getType == 'plant') && (ennemy.getType == 'water') || (player.getType == 'water') &&  (ennemy.getType == 'fire') )
