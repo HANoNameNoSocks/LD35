@@ -8,8 +8,10 @@ FightManager.prototype.create = function create() {
 
 FightManager.prototype.fight = function fight(player,ennemy) {
 
-	if( ( ennemy.getPosX < 500 ) && ( ennemy.getPosX > 300 ) && ( player.isDead == false ) && ( ennemy.isDead() == false ) )
+	if( ( ennemy.getPosX() <= 350 ) && ( ennemy.getPosX() >= 250 ) )
 	{
+		 //&& ( player.isDead == false ) && ( ennemy.isDead() == false )
+	
 		console.log('fight processing');
 		console.log('ennemy type : ' + ennemy.getType());
 		console.log('player type : ' + player.getType());
@@ -22,8 +24,7 @@ FightManager.prototype.fight = function fight(player,ennemy) {
 		}
 		else if( player.getType() == ennemy.getType() )
 		{
-			ennemy.setisDead(true);
-			console.log('dead ennemy');
+			console.log('draw');
 			return 0;
 		}
 		else if ( ((player.getType() == 'fire') && (ennemy.getType() == 'water')) ||  ((player.getType() == 'plant') && (ennemy.getType() == 'fire')) || ((player.getType() == 'water') && (ennemy.getType() == 'plant')))
@@ -36,6 +37,7 @@ FightManager.prototype.fight = function fight(player,ennemy) {
 	}
 	else
 	{
+		console.log('Null : Position = '+ennemy.getPosX() );
 		return null;
 	}
 
