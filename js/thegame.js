@@ -46,7 +46,7 @@ theGame.prototype = {
 		if (this.referee.hasLost) {
 			console.log('you lose');
 			music.pause();
-			this.lose();
+			game.time.events.add(Phaser.Timer.SECOND * 1, this.lose, this);
 		} else if (this.referee.hasWon) {
 			console.log('you win');
 			music.pause();
