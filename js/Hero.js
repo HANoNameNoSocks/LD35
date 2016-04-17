@@ -18,11 +18,6 @@ function Hero(game) {
 
 Hero.prototype.create = function create() {
 	this.sprite = this.game.add.sprite(this.posX,this.posY, 'hero');
-
-	this.sprite.animations.add('hero', [0, 1, 2, 3]);
-    this.sprite.animations.play('hero', 3, false);
-
-    console.log("Hero animations");
 	this.game.physics.arcade.enable(this.sprite);
 
 	this.cursors = this.game.input.keyboard.createCursorKeys();
@@ -42,8 +37,7 @@ Hero.prototype.fight = function fight() {
 	if (this.firebutton.isDown) {
 		this.isFighting = true;
 		this.attackType = "fire";
-		this.sprite.loadTexture('sprAttaqueFire', 5, false);
-
+		console.log("attack fire");
 	} else if (this.plantbutton.isDown) {
 		this.isFighting = true;
 		this.attackType = "plant";

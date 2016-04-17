@@ -12,7 +12,7 @@ function CounterManager(game, data) {
 CounterManager.prototype = {
 
 	create : function() {
-	/*	this.itemCount = 0;
+		this.itemCount = 0;
 		this.itemCounter = new TextCounter(this.game);
 		this.itemCounter.create(10, 10, 0, this.maxItem);
 
@@ -27,14 +27,14 @@ CounterManager.prototype = {
 				tempEnemyCounter.create(this.x + k * 25, 50, 'emptyAsset');
 				this.enemyCounter.push(tempEnemyCounter);
 			}
-		}*/
+		}
 	},
 
 	update : function() {
 	},
 
 	incrementEnemy : function() {
-	/*	this.enemyCount++;
+		this.enemyCount++;
 		enemyCounter.foreach(function (elt, idx, array) {
 			elt.kill();
 		});
@@ -48,11 +48,11 @@ CounterManager.prototype = {
 				tempEnemyCounter.create(this.x + k * 25, 50, 'emptyAsset');
 				this.enemyCounter.push(tempEnemyCounter);
 			}
-		}*/
+		}
 	},
 
 	reinitEnemy : function() {
-/*		this.enemyCount = 0;
+		this.enemyCount = 0;
 		enemyCounter.foreach(function (elt, idx, array) {
 			elt.kill();
 		});
@@ -66,13 +66,13 @@ CounterManager.prototype = {
 				tempEnemyCounter.create(this.x + k * 25, 50, 'emptyAsset');
 				this.enemyCounter.push(tempEnemyCounter);
 			}
-		}*/
+		}
 	},
 
 	incrementItem : function() {
-/*		this.itemCounter.kill();
+		this.itemCounter.kill();
 		this.itemCount++;
 		this.itemCounter = new TextCounter(this.game);
-		this.itemCounter.create(10, 10, itemCount, this.maxItem);*/
+		this.itemCounter.create(10, 10, itemCount, this.maxItem);
 	}
 }

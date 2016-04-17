@@ -14,7 +14,7 @@ function Ennemy(game, velocity, type) {
 var key1;
 var arr = ["fire", "water","plant"];
 var arrDead = ["firedead","waterdead","plantdead"];
-var arrMonkey = ["sprFire","sprWater","ennemyPlant"];
+var arrMonkey = ["sprFire","sprWater","sprPlant"];
 Ennemy.prototype.create = function create() {
     game.stage.backgroundColor = '#736357';
 
@@ -23,11 +23,11 @@ Ennemy.prototype.create = function create() {
 
 	// PHYSICS PROPERTIES
 
-    this.ennemySprite = game.add.sprite(700, 200, arrMonkey[this.type]);
+    this.ennemySprite = game.add.sprite(700, 566, arrMonkey[this.type]);
 
-    this.ennemySprite.animations.add('walk', [0, 1, 2, 3, 4 , 5 ,6 ,7 ,8 ,9]);
+    this.ennemySprite.animations.add('walk', [0, 1, 2, 3, 4]);
 
-    this.ennemySprite.animations.play('walk', 30, true);
+    this.ennemySprite.animations.play('walk', 3000, true);
 
 
 
