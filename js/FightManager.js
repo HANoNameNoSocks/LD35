@@ -3,47 +3,46 @@ function FightManager(game) {
 };
 
 FightManager.prototype.create = function create() {
-	
+	ennemyDeathsound = game.add.audio('ennemyDeath');
+	playerDeathsound = game.add.audio('playerDeath');
+	drawsound = game.add.audio('draw');
 };
 
 FightManager.prototype.fight = function fight(player,ennemy) {
 
 	if( ( ennemy.getPosX() <= 350 ) && ( ennemy.getPosX() >= 250 ) )
 	{
-		 //&& ( player.isDead == false ) && ( ennemy.isDead() == false )
-	
-		console.log('fight processing');
-		console.log('ennemy type : ' + ennemy.getType());
-		console.log('player type : ' + player.getType());
-
 		if( ((player.getType() == 'fire') && (ennemy.getType() == 'plant')) || ((player.getType() == 'plant') && (ennemy.getType() == 'water')) || ((player.getType() == 'water') &&  (ennemy.getType() == 'fire')))
 		{
 			ennemy.setisDead(true);
-			console.log('dead ennemy');
+			ennemyDeathsound.play();
 			return 1;
 		}
 		else if( player.getType() == ennemy.getType() )
 		{
-			console.log('draw');
+			ennemy.setisDraw(true);
+			drawsound.play();
 			return 0;
 		}
 		else if ( ((player.getType() == 'fire') && (ennemy.getType() == 'water')) ||  ((player.getType() == 'plant') && (ennemy.getType() == 'fire')) || ((player.getType() == 'water') && (ennemy.getType() == 'plant')))
 		{
 			player.setIsDead(true);
-			console.log('dead player');
+			playerDeathsound.play();
 			return -1;
 		}
-
+	}
+	else if((player.getType() == null) && ( ennemy.getPosX() < 250 )  && ( ennemy.getisDraw() == false ))
+	{
+			player.setIsDead(true);
+			playerDeathsound.play();
+			return -1;
 	}
 	else
 	{
-		console.log('Null : Position = '+ennemy.getPosX() );
 		return null;
 	}
-
 };
 
 FightManager.prototype.update = function update() {
 	
 };
-

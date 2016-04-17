@@ -7,11 +7,23 @@ var theGame = function(game) {
 	this.ennemyManager = null;
 	this.fightManager = null;
 	this.referee = null;
+	this.music = null;
+	this.timeCheck = null;
 
 }
 
 theGame.prototype = {
   	create: function() {
+
+  		music = game.add.audio('gameSound');
+
+  		if (music.isPlaying == false)
+  		{
+    	    music.play();
+    	}else{
+    		music.resume();
+    	}	
+
   		this.hero = new Hero(this.game);
   		this.hero.create();
 
@@ -25,38 +37,62 @@ theGame.prototype = {
   		this.ennemyManager.create();
 
   		this.ennemy = this.ennemyManager.getEnnemy();
-  		console.log('ennemy type : ' + this.ennemy.getType());
-		console.log('player type : ' + this.hero.getType());
 	},
 
 	update: function() {
 		this.ennemy = this.ennemyManager.getEnnemy();
 
 		if (this.referee.hasLost) {
-			console.log('you lose');
-			this.lose();
+			music.pause();
+			game.time.events.add(Phaser.Timer.SECOND * 2, this.lose, this);
 		} else if (this.referee.hasWon) {
-			console.log('you win');
+			music.pause();
 			this.win();
 		} else {
-			if (this.hero.isFighting && !this.ennemy.isDead) {
-				console.log('FIGHT');
+			if (!this.ennemy.isDead) {
 				var fightResult = this.fightManager.fight(this.hero, this.ennemy);
+				if (this.ennemy.isDraw) {
+				if (this.timeCheck == null) {
+					this.timeCheck = this.game.time.now;
+				}
+				this.hero.mustBash = true;
 
+				var tempEnnemyVelocity = this.ennemy.ennemySprite.body.velocity.x;
+				this.ennemy.ennemySprite.body.velocity.x = 0;
+
+				if (this.game.time.now - this.timeCheck < 1500) {
+					this.hero.update();
+				} else {
+					var bashCounter = this.hero.getBashCount();
+					this.hero.mustBash = false;
+					this.timeCheck = null;
+
+					if (bashCounter >= 5) {
+						
+						this.ennemy.setisDead(true);
+						fightResult = 0;
+					} else {
+						fightResult = -1;
+						this.ennemy.ennemySprite.body.velocity.x = tempEnnemyVelocity;
+					}
+				}
+				}
 				this.referee.judge(fightResult, this.ennemy);
 			}
+			
 		}
-
 		this.hero.update();	
 		this.ennemyManager.update();
 		this.referee.update();
 	},
 
 	lose: function() {
+		music.pause();
 		this.game.state.start("GameOver");	
 	},
 
 	win: function() {
+		music.pause();
 		this.game.state.start("Victory");
 	}
 }
