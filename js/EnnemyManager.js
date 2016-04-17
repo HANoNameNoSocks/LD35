@@ -4,6 +4,7 @@ var EnnemyManager = function(game) {
 	this.currentEnnemy = null;
 	this.outOfGamePosition = 50;
 	this.spawnClock = null;
+	this.maxSpeed = -700;
 }
 
 EnnemyManager.prototype = {
@@ -16,23 +17,29 @@ EnnemyManager.prototype = {
     update: function() {
 		if(this._isEnnnemyDead()){
 			this._killEnnemy();
-			if(this.spawnClock.isRunning==false){
-				this.spawnClock.startTimer();
-			}
+			this._startSpawnClock();
 		}else if(this._OutOfGamePosition()){
 			this._destroyEnnemy();
-			if(this.spawnClock.isRunning==false){
-				this.spawnClock.startTimer();
-			}
+			this._startSpawnClock();
 		}else{
 			this.currentEnnemy.update();
 		}		
 		
+		this._initEnnemyAndStopClock();
+    },
+	
+	_initEnnemyAndStopClock : function (){
 		if(this.spawnClock.isSpawnAllowed==true){
 			this._initEnnemy();
 			this.spawnClock.stopTimer();
 		}
-    },
+	},
+	
+	_startSpawnClock : function (){
+		if(this.spawnClock.isRunning==false){
+				this.spawnClock.startTimer();
+		}
+	},
 	
 	_destroyEnnemy : function (){
 		this.currentEnnemy.destroy();
@@ -50,10 +57,10 @@ EnnemyManager.prototype = {
 	},
 	
 	_upCurrentSpeed : function(){
-		if(this.currentSpeed > -699){
+		if(this.currentSpeed > (this.maxSpeed -1)){
 			this.currentSpeed += this.upSpeed;
 		}else{
-			this.currentSpeed = -700;
+			this.currentSpeed = this.maxSpeed;
 		}
 	},
 	
