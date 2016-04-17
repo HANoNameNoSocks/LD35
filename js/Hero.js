@@ -28,6 +28,7 @@ Hero.prototype.create = function create() {
 };
 
 Hero.prototype.update = function update() {
+	this.attackType = null;
 	this.isFighting = false;
 	this.fight();
 };
@@ -63,20 +64,3 @@ Hero.prototype.setIsDead = function setIsDead(isDead) {
 Hero.prototype.destroy = function destroy() {
 	this.sprite.destroy();
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
