@@ -35,6 +35,7 @@ preload.prototype = {
 		this.game.load.image('fillAsset','assets/img/fillAsset.png');
 		this.game.load.image('emptyAsset','assets/img/emptyAsset.png');
 		this.game.load.image('item','assets/img/item.png');
+		this.game.load.image("background", "assets/img/game_bg.jpg");  
 
 		//Sound
     	game.load.audio('gameSound', 'assets/sound/gameSound.mp3');
