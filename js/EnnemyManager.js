@@ -15,7 +15,7 @@ EnnemyManager.prototype = {
     },
 
     update: function() {
-		if(this._isEnnnemyDead()){
+		if(this._isEnnnemyDead() && !this._isSpriteDestroy()){
 			this._killEnnemy();
 			this._startSpawnClock();
 		}else if(this._OutOfGamePosition()){
@@ -82,5 +82,11 @@ EnnemyManager.prototype = {
 	
 	_randomIntFromInterval: function(min,max){
 		return Math.floor(Math.random()*(max-min+1)+min);
+	},
+
+	_isSpriteDestroy: function(){
+
+		return this.currentEnnemy.getIsSpriteDestroy();
 	}
+
 }
