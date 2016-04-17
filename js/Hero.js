@@ -20,7 +20,7 @@ function Hero(game) {
 };
 
 Hero.prototype.create = function create() {
-	hitsound = game.add.audio('hit')
+	hitsound = game.add.audio('hit');
 
 	screenShakesound = game.add.audio('screenShake');
 
@@ -36,9 +36,9 @@ Hero.prototype.create = function create() {
 	this.spriteDeath.enableBody = true;
 	this.spriteDeath.visible = false;
 
-	this.firebutton = this.game.input.keyboard.addKey(Phaser.Keyboard.W)
-	this.plantbutton = this.game.input.keyboard.addKey(Phaser.Keyboard.C)
-	this.waterbutton = this.game.input.keyboard.addKey(Phaser.Keyboard.X)
+	this.firebutton = this.game.input.keyboard.addKey(Phaser.Keyboard.W);
+	this.plantbutton = this.game.input.keyboard.addKey(Phaser.Keyboard.C);
+	this.waterbutton = this.game.input.keyboard.addKey(Phaser.Keyboard.X);
 
 	this.firebutton.onDown.add(this.fire, this);
 	this.plantbutton.onDown.add(this.plant, this);
