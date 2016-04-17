@@ -1,5 +1,5 @@
 var EnnemyManager = function(game) {
-	this.currentSpeed = -50;
+	this.currentSpeed = -300;
 	this.upSpeed = 20;
 	this.currentEnnemy = null;
 }
