@@ -3,9 +3,10 @@ var victory = function(game){}
 victory.prototype = {
   	create: function(){
 
-  		winSound = game.add.audio('winSound');
+  		winSound = game.add.audio('winSound',1,true);
   		if (winSound.isPlaying == false)
   		{
+  			winSound.loop = true;
     	    winSound.play();
     	}else{
     		winSound.resume();
