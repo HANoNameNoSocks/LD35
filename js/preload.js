@@ -18,9 +18,9 @@ preload.prototype = {
 		this.game.load.image('plantdead','assets/img/plantdead.png');
 		this.game.load.image('waterdead','assets/img/waterdead.png');
  	 	this.game.load.spritesheet('sprFire', 'assets/img/fireSprite.png', 39,40,16);
- 	 	this.game.load.spritesheet('sprPlant', 'assets/img/plantSprite.png', 39,40,16);
  	 	this.game.load.spritesheet('sprWater', 'assets/img/waterSprite.png', 39,40,16);
 
+ 	 	this.game.load.spritesheet('sprPlant', 'assets/img/enemy.png', 110,115,10);
 
 		this.game.load.image("hero", "assets/img/hero.png");
 
