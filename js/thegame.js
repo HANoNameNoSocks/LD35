@@ -7,11 +7,22 @@ var theGame = function(game) {
 	this.ennemyManager = null;
 	this.fightManager = null;
 	this.referee = null;
+	this.music = null;
 
 }
 
 theGame.prototype = {
   	create: function() {
+
+  		music = game.add.audio('gameSound');
+
+  		if (music.isPlaying == false)
+  		{
+    	    music.play();
+    	}else{
+    		music.resume();
+    	}	
+
   		this.hero = new Hero(this.game);
   		this.hero.create();
 
@@ -34,9 +45,11 @@ theGame.prototype = {
 
 		if (this.referee.hasLost) {
 			console.log('you lose');
-			this.lose();
+			music.pause();
+			game.time.events.add(Phaser.Timer.SECOND * 1, this.lose, this);
 		} else if (this.referee.hasWon) {
 			console.log('you win');
+			music.pause();
 			this.win();
 		} else {
 			if (!this.ennemy.isDead) {
