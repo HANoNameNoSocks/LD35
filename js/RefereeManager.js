@@ -4,11 +4,12 @@ function RefereeManager(game) {
 	this.currentCounter = null;
 	this.names = ["Maracas", "Ukulele", "Poncho", "Sombrero", "Drapeau mexicain", "Tequila", "Moustache", "Bottes", "Veste", "Harmonica", "Trompettes", "Âne", "Selle"];
 	this.tempNames = null;
-	this.limit = 2; // 5;
+	this.limitOfItem = 2; // 5;
 	this.retrievedItems = [];
 	this.hasWon = false;
 	this.hasLost = false;
 	this.counterManager = null;
+	this.limitOfEnemy = 3;
 }
 
 RefereeManager.prototype.create = function create() {
@@ -22,7 +23,7 @@ RefereeManager.prototype.create = function create() {
 	this.itemManager.createItem(data);
 	this.currentCounter = 0;
 
-	this.counterManager = new CounterManager(this.game, {maxItem : this.limit, maxEnemy : data.counter, x : 10});
+	this.counterManager = new CounterManager(this.game, {maxItem : this.limitOfItem, maxEnemy : data.counter, x : 10});
 	this.counterManager.create();
 }
 
@@ -45,7 +46,7 @@ RefereeManager.prototype.playerWonAFight =  function playerWonAFight(enemy) {
 		this.counterManager.incrementEnemy();
 		if (++this.currentCounter == this.itemManager.currentItem.counter) {
 			this.retrievedItems.push(this.currentItem);
-			if (this.limit == this.retrievedItems.length) {
+			if (this.limitOfItem == this.retrievedItems.length) {
 				this.hasWon = true;
 			} else {
 				this.counterManager.incrementItem();
@@ -69,7 +70,7 @@ RefereeManager.prototype.playerLoseAFight =  function playerLoseAFight() {
 };
 
 function getData(me) {
-	return {name : getName(me), counter : /*Math.floor((Math.random() * 3 /* 10 */ /*) + 1)*/ 3, type : /* getType() */ "any"};
+	return {name : getName(me), counter : getCounterOfEnemy(me), type : /* getType() */ "any"};
 };
 
 function getName(me) {
@@ -81,6 +82,10 @@ function getName(me) {
 	}
 	return name;
 };
+
+function getCounterOfEnemy(me) {
+	return /*Math.floor((Math.random() * */ me.limitOfEnemy /*) + 1)*/;
+}
 
 function getType() {
 	var rd = Math.floor((Math.random() * 4) + 1);
