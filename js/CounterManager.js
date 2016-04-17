@@ -22,17 +22,19 @@ CounterManager.prototype = {
 		this.enemyCount = 0;
 		var gap = 0;
 		for (var j = 0; j < this.limitEnemyEver; j++) {
-			console.log('gap -> ' + gap);
+			// add empty asset
 			var tempEnemyTodo = new AssetCounter(this.game);
 			tempEnemyTodo.create(this.x + gap, 50, 'emptyAsset');
 			if (j + 1 > this.maxEnemy) {
 				tempEnemyTodo.getSprite().visible = false;
 			}
 			this.enemyToDo.push(tempEnemyTodo);
+			// add fill asset
 			var tempEnemyDone = new AssetCounter(this.game);
 			tempEnemyDone.create(this.x + gap, 50, 'fillAsset');
 			tempEnemyDone.getSprite().visible = false;
 			this.enemyDone.push(tempEnemyDone);
+
 			gap += tempEnemyTodo.getSprite().width + 2;
 		}
 	},
