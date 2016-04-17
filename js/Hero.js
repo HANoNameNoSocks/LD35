@@ -16,13 +16,13 @@ function Hero(game) {
 	this.attackType = null;
 
 	this.hitsound = null;
-	
+	this.shakeWorld = 0;
 };
-
-var shakeWorld = 0;
 
 Hero.prototype.create = function create() {
 	hitsound = game.add.audio('hit')
+
+	screenShakesound = game.add.audio('screenShake');
 
 	this.sprite = this.game.add.sprite(this.posX,this.posY, 'hero_idle');
 	this.sprite.animations.add('idle', [0,1]);
@@ -51,15 +51,15 @@ Hero.prototype.update = function update() {
 			this.attackType = null;
 			this.isFighting = false;
 
-		if (shakeWorld > 0) 
+		if (this.shakeWorld > 0) 
 		{
 			var rand1 = game.rnd.integerInRange(-5,5);
 			var rand2 = game.rnd.integerInRange(-5,5);
 			game.world.setBounds(rand1, rand2, game.width + rand1, game.height + rand2);
-			shakeWorld--;
+			this.shakeWorld--;
 		}
 
-		if (shakeWorld == 0) {
+		if (this.shakeWorld == 0) {
 			game.world.setBounds(0, 0, game.width,game.height);
 		}
 	}else{
@@ -70,7 +70,8 @@ Hero.prototype.update = function update() {
 Hero.prototype.fire = function fire() {
 	this.isFighting = true;
 	this.attackType = "fire";
-	shakeWorld = 5;
+	this.shakeWorld = 5;
+	screenShakesound.play();
 	hitsound.play();
 	console.log("attack fire");
 };
@@ -78,7 +79,8 @@ Hero.prototype.fire = function fire() {
 Hero.prototype.plant = function plant() {
 	this.isFighting = true;
 	this.attackType = "plant";
-	shakeWorld = 5;
+	this.shakeWorld = 5;
+	screenShakesound.play();
 	hitsound.play();
 	console.log("attack plant");
 };
@@ -86,12 +88,14 @@ Hero.prototype.plant = function plant() {
 Hero.prototype.water = function water() {
 	this.isFighting = true;
 	this.attackType = "water";
-	shakeWorld = 5;
+	this.shakeWorld = 5;
+	screenShakesound.play();
 	hitsound.play();
 	console.log("attack water");
 };
 
 Hero.prototype._heroDeathAnimation = function _heroDeathAnimation() {
+	playerDeathsound.play();
 	this.sprite.destroy();
 	this.spriteDeath.visible = true;
 	this.spriteDeath.animations.play('death',20,true);

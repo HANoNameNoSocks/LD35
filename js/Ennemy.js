@@ -17,9 +17,12 @@ var arrDead = ["sprFireDeath","sprWaterDeath","sprPlantDeath"];
 var arrEnemy = ["sprFire","sprWater","sprPlant"];
 var animation = 15;
 
+
 Ennemy.prototype.create = function create() {
 
 	// PHYSICS PROPERTIES
+ 	spawnEnnemysound = game.add.audio('spawnEnnemy');
+ 	spawnEnnemysound.play();
 
     this.ennemySprite = game.add.sprite(this.posX, this.posY, arrEnemy[this.type]);
 
@@ -70,7 +73,7 @@ Ennemy.prototype.getisDraw = function getisDraw() {
 };
 
 Ennemy.prototype.getPosX = function getPosX(){
-	console.log()
+
 	return this.ennemySprite.x;
 };
 
@@ -87,6 +90,7 @@ Ennemy.prototype.destroy = function destroy () {
 Ennemy.prototype.kill = function kill () {
   	var start = new Date().getTime();
  	var oldX = this.ennemySprite.x;
+
   	this.ennemySprite.destroy();
   	this.setIsSpriteDestroy(true);
   	this.ennemySprite = game.add.sprite(oldX, this.posY, arrDead[this.type]);

@@ -31,14 +31,19 @@ preload.prototype = {
 		this.game.load.image('waterdead','assets/img/waterdead.png');
 		this.game.load.image('fillAsset','assets/img/fillAsset.png');
 		this.game.load.image('emptyAsset','assets/img/emptyAsset.png');
+		this.game.load.image('item','assets/img/item.png');
 
 		//Sound
     	game.load.audio('gameSound', 'assets/sound/gameSound.mp3');
+    	game.load.audio('introSound', 'assets/sound/introSound.wav');    	
+    	game.load.audio('winSound', 'assets/sound/winSound.ogg'); 
+    	game.load.audio('loseSound', 'assets/sound/loseSound.wav'); 
     	game.load.audio('hit', 'assets/sound/hit.mp3');
     	game.load.audio('ennemyDeath', 'assets/sound/ennemyDeath.wav');
     	game.load.audio('playerDeath', 'assets/sound/playerDeath.wav');
     	game.load.audio('screenShake', 'assets/sound/screenShake.wav');
     	game.load.audio('spawnEnnemy', 'assets/sound/spawnEnnemy.wav');    	
+    	game.load.audio('draw', 'assets/sound/draw.mp3'); 
 
 	},
   	create: function(){
