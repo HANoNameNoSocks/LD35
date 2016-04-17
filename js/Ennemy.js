@@ -9,7 +9,6 @@ function Ennemy(game, velocity, type) {
 	this.posY = 485;
 	this.isDead = false;
 	this.isDraw = false;
-	this.counterDeath = 0;
 };
 
 var arr = ["fire", "water","plant"];
@@ -21,7 +20,6 @@ var animation = 15;
 Ennemy.prototype.create = function create() {
 
 	// PHYSICS PROPERTIES
- 	ennemyDeathsound = game.add.audio('ennemyDeath');
  	spawnEnnemysound = game.add.audio('spawnEnnemy');
  	spawnEnnemysound.play();
 
@@ -81,16 +79,6 @@ Ennemy.prototype.destroy = function destroy () {
 Ennemy.prototype.kill = function kill () {
   	var start = new Date().getTime();
  	var oldX = this.ennemySprite.x;
-
-
-
-	this.counterDeath++;
-
-  	if (ennemyDeathsound.isPlaying == false && this.counterDeath==1)
-  	{
-  		console.log("coucou");
-        ennemyDeathsound.play();
-    }
 
   	this.ennemySprite.destroy();
   	this.ennemySprite = game.add.sprite(oldX, this.posY, arrMonkey[this.type]);
