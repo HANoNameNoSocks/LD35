@@ -36,24 +36,19 @@ theGame.prototype = {
   		this.ennemyManager.create();
 
   		this.ennemy = this.ennemyManager.getEnnemy();
-  		console.log('ennemy type : ' + this.ennemy.getType());
-		console.log('player type : ' + this.hero.getType());
 	},
 
 	update: function() {
 		this.ennemy = this.ennemyManager.getEnnemy();
 
 		if (this.referee.hasLost) {
-			console.log('you lose');
 			music.pause();
-			game.time.events.add(Phaser.Timer.SECOND * 1, this.lose, this);
+			game.time.events.add(Phaser.Timer.SECOND * 2, this.lose, this);
 		} else if (this.referee.hasWon) {
-			console.log('you win');
 			music.pause();
 			this.win();
 		} else {
 			if (!this.ennemy.isDead) {
-				console.log('FIGHT');
 				var fightResult = this.fightManager.fight(this.hero, this.ennemy);
 
 				this.referee.judge(fightResult, this.ennemy);

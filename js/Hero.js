@@ -2,11 +2,15 @@ function Hero(game) {
 	this.game = game;
 	this.sprite = null;
 	this.spriteDeath = null;
+	this.spriteFire = null;
+	this.spritePlant = null;
+	this.spriteWater = null;
 	this.posX = 130;
 	this.posY = 450;
 
 	this.isDead = false;
 	this.isFighting = false;
+	this.alreadyDead = false;
 
 	this.cursors = null;
 	this.firebutton = null;
@@ -28,13 +32,35 @@ Hero.prototype.create = function create() {
 	this.sprite.animations.add('idle', [0,1]);
 	this.game.physics.arcade.enable(this.sprite);
 	this.sprite.enableBody = true;
-	this.sprite.animations.play('idle', 5, true);
+	this.sprite.animations.play('idle', 10, true);
 	
 	this.spriteDeath = this.game.add.sprite(-80,315, 'hero_death');
 	this.spriteDeath.animations.add('death',[0,1,2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
 	this.game.physics.arcade.enable(this.spriteDeath);
 	this.spriteDeath.enableBody = true;
-	this.spriteDeath.visible = false;
+	this.spriteDeath.visible = false;	
+	
+	this.spriteFire = this.game.add.sprite(130,340, 'hero_fire');
+	this.spriteFire.animations.add('fire',[0,1,2,3,5,6,7,8,9]);
+	this.game.physics.enable(this.spriteFire);
+	this.spriteFire.enableBody = true;
+	this.spriteFire.visible = false;
+	this.spriteFire.animations.currentAnim.onComplete.add(this._fireCallback, this);
+	
+	this.spritePlant = this.game.add.sprite(130,340, 'hero_plant');
+	this.spritePlant.animations.add('plant',[0,1,2,3,5,6,7,8,9]);
+	this.game.physics.arcade.enable(this.spritePlant);
+	this.spritePlant.enableBody = true;
+	this.spritePlant.visible = false;
+	this.spritePlant.animations.currentAnim.onComplete.add(this._plantCallback, this);
+	
+	this.spriteWater = this.game.add.sprite(130,340, 'hero_water');
+	this.spriteWater.animations.add('water',[0,1,2,3,5,6,7,8,9]);
+	this.game.physics.arcade.enable(this.spriteWater);
+	this.spriteWater.enableBody = true;
+	this.spriteWater.visible = false;
+	this.spriteWater.animations.currentAnim.onComplete.add(this._waterCallback, this);
+	
 
 	this.firebutton = this.game.input.keyboard.addKey(Phaser.Keyboard.W)
 	this.plantbutton = this.game.input.keyboard.addKey(Phaser.Keyboard.C)
@@ -63,38 +89,88 @@ Hero.prototype.update = function update() {
 			game.world.setBounds(0, 0, game.width,game.height);
 		}
 	}else{
-			this._heroDeathAnimation();
+		if(!this.spriteFire.animations.isPlaying && !this.spritePlant.animations.isPlaying && !this.spriteWater.animations.isPlaying){ 
+			if(this.alreadyDead == false){
+				this._heroDeathAnimation();
+			}
+		}
 	}
 };
 
+Hero.prototype._fireCallback = function _fireCallback() {
+	this.spriteFire.visible = false;
+	this.sprite.visible = true;
+	this.spriteFire.animations.isPlaying = false;
+}
+
 Hero.prototype.fire = function fire() {
-	this.isFighting = true;
-	this.attackType = "fire";
-	shakeWorld = 5;
-	hitsound.play();
-	console.log("attack fire");
+	if(this.isDead == false){
+		if(!this.spriteFire.animations.isPlaying && !this.spritePlant.animations.isPlaying && !this.spriteWater.animations.isPlaying){ 
+			this.isFighting = true;
+			this.attackType = "fire";
+			this.sprite.visible = false;
+			this.spriteFire.visible = true;
+			this.spriteFire.animations.play('fire', 10, false, false, false);
+			this.spriteFire.animations.isPlaying = true;
+			this.spriteWater.animations.isPlaying = false;
+			this.spritePlant.animations.isPlaying = false;
+			shakeWorld = 5;
+			hitsound.play();
+		}
+	}
 };
+
+Hero.prototype._plantCallback = function _plantCallback() {
+	this.spritePlant.visible = false;
+	this.sprite.visible = true;
+	this.spritePlant.animations.isPlaying = false;
+}
 
 Hero.prototype.plant = function plant() {
-	this.isFighting = true;
-	this.attackType = "plant";
-	shakeWorld = 5;
-	hitsound.play();
-	console.log("attack plant");
+	if(this.isDead == false){
+		if(!this.spriteFire.animations.isPlaying && !this.spritePlant.animations.isPlaying && !this.spriteWater.animations.isPlaying){
+			this.isFighting = true;
+			this.attackType = "plant";
+			this.sprite.visible = false;
+			this.spritePlant.visible = true;
+			this.spritePlant.animations.play('plant', 10, false, false, false);
+			this.spriteWater.animations.isPlaying = false;
+			this.spritePlant.animations.isPlaying = true;
+			this.spriteFire.animations.isPlaying = false;
+			shakeWorld = 5;
+			hitsound.play();
+		}
+	}
 };
 
+Hero.prototype._waterCallback = function _waterCallback() {
+	this.spriteWater.visible = false;
+	this.sprite.visible = true;
+	this.spriteWater.animations.isPlaying = false;
+}
+
 Hero.prototype.water = function water() {
-	this.isFighting = true;
-	this.attackType = "water";
-	shakeWorld = 5;
-	hitsound.play();
-	console.log("attack water");
+	if(this.isDead == false){
+		if(!this.spriteFire.animations.isPlaying && !this.spritePlant.animations.isPlaying && !this.spriteWater.animations.isPlaying){
+			this.isFighting = true;
+			this.attackType = "water";
+			this.sprite.visible = false;
+			this.spriteWater.visible = true;
+			this.spriteWater.animations.play('water', 10, false, false, false);
+			this.spriteWater.animations.isPlaying = true;
+			this.spritePlant.animations.isPlaying = false;
+			this.spriteFire.animations.isPlaying = false;
+			shakeWorld = 5;
+			hitsound.play();
+		}
+	}
 };
 
 Hero.prototype._heroDeathAnimation = function _heroDeathAnimation() {
 	this.sprite.destroy();
 	this.spriteDeath.visible = true;
-	this.spriteDeath.animations.play('death',20,true);
+	this.spriteDeath.animations.play('death', 20, false, false, false);
+	this.alreadyDead = true;
 };
 
 Hero.prototype.isDead = function isDead() {

@@ -59,7 +59,6 @@ Ennemy.prototype.getisDraw = function getisDraw() {
 };
 
 Ennemy.prototype.getPosX = function getPosX(){
-	console.log()
 	return this.ennemySprite.x;
 };
 
