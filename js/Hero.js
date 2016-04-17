@@ -32,7 +32,9 @@ function Hero(game) {
 
 Hero.prototype.create = function create() {
 	hitsound = game.add.audio('hit');
-
+	hitWatersound = game.add.audio('hitWater');
+	hitFiresound = game.add.audio('hitFire');
+	hitPlantsound = game.add.audio('hitPlant');
 	screenShakesound = game.add.audio('screenShake');
 
 	this.sprite = this.game.add.sprite(this.posX,this.posY, 'hero_idle');
@@ -128,7 +130,7 @@ Hero.prototype.fire = function fire() {
 			this.spriteWater.animations.isPlaying = false;
 			this.spritePlant.animations.isPlaying = false;
 			shakeWorld = 5;
-			hitsound.play();
+			hitFiresound.play();
 		}
 	}
 };
@@ -152,7 +154,7 @@ Hero.prototype.plant = function plant() {
 			this.spritePlant.animations.isPlaying = true;
 			this.spriteFire.animations.isPlaying = false;
 			shakeWorld = 5;
-			hitsound.play();
+			hitPlantsound.play();
 		}
 	}
 
@@ -177,13 +179,12 @@ Hero.prototype.water = function water() {
 			this.spritePlant.animations.isPlaying = false;
 			this.spriteFire.animations.isPlaying = false;
 			shakeWorld = 5;
-			hitsound.play();
+			hitWatersound.play();
 		}
 	}
 };
 
 Hero.prototype._heroDeathAnimation = function _heroDeathAnimation() {
-	playerDeathsound.play();
 	this.sprite.destroy();
 	this.spriteDeath.visible = true;
 	this.spriteDeath.animations.play('death', 20, false, false, false);
