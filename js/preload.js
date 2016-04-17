@@ -10,6 +10,10 @@ preload.prototype = {
         this.game.load.spritesheet('sprFire', 'assets/img/enemyFire.png', 110,115,10);
  	 	this.game.load.spritesheet('sprWater', 'assets/img/enemyWater.png', 110,115,10);
  	 	this.game.load.spritesheet('sprPlant', 'assets/img/enemyPlant.png', 110,115,10);
+        this.game.load.spritesheet('sprFireDeath', 'assets/img/enemyFireDeath.png', 215,160,15);
+ 	 	this.game.load.spritesheet('sprWaterDeath', 'assets/img/enemyWaterDeath.png', 215,160,15);
+ 	 	this.game.load.spritesheet('sprPlantDeath', 'assets/img/enemyPlantDeath.png', 215,160,15);
+
 		this.game.load.spritesheet('hero_idle', 'assets/img/hero_idle.png', 150,150,2); 
         this.game.load.spritesheet('hero_death', 'assets/img/hero_death.png', 400,290,25);
 
@@ -31,11 +35,15 @@ preload.prototype = {
 
 		//Sound
     	game.load.audio('gameSound', 'assets/sound/gameSound.mp3');
+    	game.load.audio('introSound', 'assets/sound/introSound.mp3');    	
+    	game.load.audio('winSound', 'assets/sound/winSound.ogg'); 
+    	game.load.audio('loseSound', 'assets/sound/loseSound.wav'); 
     	game.load.audio('hit', 'assets/sound/hit.mp3');
     	game.load.audio('ennemyDeath', 'assets/sound/ennemyDeath.wav');
     	game.load.audio('playerDeath', 'assets/sound/playerDeath.wav');
     	game.load.audio('screenShake', 'assets/sound/screenShake.wav');
     	game.load.audio('spawnEnnemy', 'assets/sound/spawnEnnemy.wav');    	
+    	game.load.audio('draw', 'assets/sound/draw.mp3'); 
 
 	},
   	create: function(){
