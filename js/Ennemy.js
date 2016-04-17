@@ -29,7 +29,7 @@ Ennemy.prototype.create = function create() {
 	this.game.physics.arcade.enable(this.ennemySprite);
 	this.ennemySprite.enableBody = true;
 
-	this.ennemySprite.body.gravity.x = this.velocity;
+	this.ennemySprite.body.velocity.x = this.velocity;
 
 
 };
