@@ -20,17 +20,20 @@ CounterManager.prototype = {
 		this.itemCounter.create(10, 10, 0, this.maxItem);
 
 		this.enemyCount = 0;
+		var gap = 0;
 		for (var j = 0; j < this.limitEnemyEver; j++) {
+			console.log('gap -> ' + gap);
 			var tempEnemyTodo = new AssetCounter(this.game);
-			tempEnemyTodo.create(this.x + j * 25, 50, 'emptyAsset');
+			tempEnemyTodo.create(this.x + gap, 50, 'emptyAsset');
 			if (j + 1 > this.maxEnemy) {
 				tempEnemyTodo.getSprite().visible = false;
 			}
 			this.enemyToDo.push(tempEnemyTodo);
 			var tempEnemyDone = new AssetCounter(this.game);
-			tempEnemyDone.create(this.x + j * 25, 50, 'fillAsset');
+			tempEnemyDone.create(this.x + gap, 50, 'fillAsset');
 			tempEnemyDone.getSprite().visible = false;
 			this.enemyDone.push(tempEnemyDone);
+			gap += tempEnemyTodo.getSprite().width + 2;
 		}
 	},
 
@@ -56,7 +59,7 @@ CounterManager.prototype = {
 	},
 
 	incrementItem : function() {
-		this.itemCounter.changeText(++this.itemCount, this.maxItem);
+		this.itemCounter.changeText(++this.itemCount);
 	},
 
 	changeMaxEnemy : function(newMax) {
