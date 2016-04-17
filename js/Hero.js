@@ -178,7 +178,7 @@ Hero.prototype.water = function water() {
 			this.spriteWater.animations.isPlaying = true;
 			this.spritePlant.animations.isPlaying = false;
 			this.spriteFire.animations.isPlaying = false;
-			this.shakeWorld = 5;
+			this.shakeWorld = 25;
 			hitWatersound.play();
 		}
 	}
