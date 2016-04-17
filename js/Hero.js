@@ -1,7 +1,7 @@
 function Hero(game) {
 	this.game = game;
 	this.sprite = null;
-	this.posX = 200;
+	this.posX = 210;
 	this.posY = 566;
 
 	this.isDead = false;

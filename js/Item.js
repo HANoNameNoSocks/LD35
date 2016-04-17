@@ -2,7 +2,7 @@ function Item(game, data) {
 	this.game = game;
 	// definition of an item
 	this.name = data.name;
-	this.counter = data.number;
+	this.counter = data.counter;
 	this.type = data.type;
 };
 
