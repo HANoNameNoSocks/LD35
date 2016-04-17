@@ -46,7 +46,7 @@ RefereeManager.prototype.playerWonAFight =  function playerWonAFight(enemy) {
 	if ((this.itemManager.currentItem.type == "any" || this.itemManager.currentItem.type == enemy.getType())) {
 		this.counterManager.incrementEnemy();
 		if (++this.currentCounter == this.itemManager.currentItem.counter) {
-			this.retrievedItems.push(this.currentItem);
+			this.retrievedItems.push(this.itemManager.currentItem);
 			if (this.limitOfItem == this.retrievedItems.length) {
 				this.hasWon = true;
 			} else {
