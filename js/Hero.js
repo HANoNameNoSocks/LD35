@@ -9,8 +9,8 @@ function Hero(game) {
 
 	this.cursors = null;
 	this.firebutton = null;
-	this.plant = null;
-	this.water = null;
+	this.plantbutton = null;
+	this.waterbutton = null;
 
 	this.attackType = null;
 	
@@ -25,18 +25,19 @@ Hero.prototype.create = function create() {
 	
   	this.sprite.animations.add('idle', [1,2]);
 	this.sprite.animations.play('idle', 3000, true);
-	
-	this.cursors = this.game.input.keyboard.createCursorKeys();
 
 	this.firebutton = this.game.input.keyboard.addKey(Phaser.Keyboard.W)
 	this.plantbutton = this.game.input.keyboard.addKey(Phaser.Keyboard.C)
 	this.waterbutton = this.game.input.keyboard.addKey(Phaser.Keyboard.X)
+
+	this.firebutton.onDown.add(this.fire, this);
+	this.plantbutton.onDown.add(this.plant, this);
+	this.waterbutton.onDown.add(this.water, this);
 };
 
 Hero.prototype.update = function update() {
 	this.attackType = null;
 	this.isFighting = false;
-	this.fight();
 
     if (shakeWorld > 0) 
     {
@@ -51,23 +52,22 @@ Hero.prototype.update = function update() {
     }
 };
 
-Hero.prototype.fight = function fight() {
-	if (this.firebutton.isDown) {
-		this.isFighting = true;
-		this.attackType = "fire";
-		shakeWorld = 5;
-		console.log("attack fire");
-	} else if (this.plantbutton.isDown) {
-		this.isFighting = true;
-		this.attackType = "plant";
-		shakeWorld = 5;
-		console.log("attack plant");
-	} else if (this.waterbutton.isDown) {
-		this.isFighting = true;
-		this.attackType = "water";
-		shakeWorld = 5;
-		console.log("attack water");
-	}
+Hero.prototype.fire = function fire() {
+	this.isFighting = true;
+	this.attackType = "fire";
+	console.log("attack fire");
+};
+
+Hero.prototype.plant = function plant() {
+	this.isFighting = true;
+	this.attackType = "plant";
+	console.log("attack plant");
+};
+
+Hero.prototype.water = function water() {
+	this.isFighting = true;
+	this.attackType = "water";
+	console.log("attack water");
 };
 
 Hero.prototype.isDead = function isDead() {
