@@ -17,7 +17,7 @@ function Hero(game) {
 };
 
 var shakeWorld = 0;
-
+// THIS IS A COMMENTARY
 Hero.prototype.create = function create() {
 	this.sprite = this.game.add.sprite(this.posX,this.posY, 'hero');
 	this.sprite.animations.add('idle', [1,2]);
