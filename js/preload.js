@@ -10,6 +10,10 @@ preload.prototype = {
         this.game.load.spritesheet('sprFire', 'assets/img/enemyFire.png', 110,115,10);
  	 	this.game.load.spritesheet('sprWater', 'assets/img/enemyWater.png', 110,115,10);
  	 	this.game.load.spritesheet('sprPlant', 'assets/img/enemyPlant.png', 110,115,10);
+        this.game.load.spritesheet('sprFireDeath', 'assets/img/enemyFireDeath.png', 215,160,15);
+ 	 	this.game.load.spritesheet('sprWaterDeath', 'assets/img/enemyWaterDeath.png', 215,160,15);
+ 	 	this.game.load.spritesheet('sprPlantDeath', 'assets/img/enemyPlantDeath.png', 215,160,15);
+
 		this.game.load.spritesheet('hero_idle', 'assets/img/hero_idle.png', 150,150,2); 
         this.game.load.spritesheet('hero_death', 'assets/img/hero_death.png', 400,290,25);
 
