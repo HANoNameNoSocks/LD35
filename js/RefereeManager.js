@@ -40,18 +40,19 @@ RefereeManager.prototype.judge = function judge(data, enemy) {
 }
 
 RefereeManager.prototype.playerWonAFight =  function playerWonAFight(enemy) {
+	var me = this;
 	if ((this.itemManager.currentItem.type == "any" || this.itemManager.currentItem.type == enemy.getType())) {
 		this.counterManager.incrementEnemy();
-		if (this.currentCounter == this.itemManager.currentItem.counter) {
+		if (++this.currentCounter == this.itemManager.currentItem.counter) {
 			this.retrievedItems.push(this.currentItem);
-			if (++this.limit >= this.items.length) {
+			if (this.limit == this.retrievedItems.length) {
 				this.hasWon = true;
 			} else {
 				this.counterManager.incrementItem();
 				var data = getData(me);
 				this.itemManager.createItem(data);
 				this.currentCounter = 0;
-				this.counterManager.changeMaxEnemy(data.count);
+				this.counterManager.changeMaxEnemy(data.counter);
 				this.counterManager.reinitEnemy();
 			}
 		}
@@ -68,7 +69,7 @@ RefereeManager.prototype.playerLoseAFight =  function playerLoseAFight() {
 };
 
 function getData(me) {
-	return {name : getName(me), counter : Math.floor((Math.random() * 3 /* 10 */ ) + 1), type : /* getType() */ "any"};
+	return {name : getName(me), counter : /*Math.floor((Math.random() * 3 /* 10 */ /*) + 1)*/ 3, type : /* getType() */ "any"};
 };
 
 function getName(me) {
