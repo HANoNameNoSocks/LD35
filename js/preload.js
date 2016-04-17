@@ -21,7 +21,7 @@ preload.prototype = {
 		this.game.load.spritesheet('hero_water', 'assets/img/hero_water.png', 150,265,10); 
 
 		//Image
-		this.game.load.image("gametitle","assets/img/gametitle.png");
+		this.game.load.image("gametitle","assets/img/gametitle.jpg");
 		this.game.load.image("play","assets/img/play.png");
 		this.game.load.image("gameover","assets/img/gameover.png");
 		this.game.load.image("victory","assets/img/victory.png");

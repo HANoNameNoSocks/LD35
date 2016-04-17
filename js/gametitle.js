@@ -5,6 +5,11 @@ gameTitle.prototype = {
 
   		introSound = game.add.audio('introSound');
 
+  		this.game.add.sprite(0,0,"gametitle");
+
+  		this.startButton = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+		this.startButton.onDown.add(this.playTheGame, this);
+
   		if (introSound.isPlaying == false)
   		{
   			introSound.loop = true;
@@ -12,11 +17,6 @@ gameTitle.prototype = {
     	}else{
     		introSound.resume();
     	}	
-
-		var gameTitle = this.game.add.sprite(160,160,"gametitle");
-		gameTitle.anchor.setTo(0.5,0.5);
-		var playButton = this.game.add.button(160,320,"play",this.playTheGame,this);
-		playButton.anchor.setTo(0.5,0.5);
 	},
 	playTheGame: function(){
 		introSound.pause();
