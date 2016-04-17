@@ -4,7 +4,7 @@ function RefereeManager(game) {
 	this.currentCounter = null;
 	this.names = ["Maracas", "Ukulele", "Poncho", "Sombrero", "Drapeau mexicain", "Tequila", "Moustache", "Bottes", "Veste", "Harmonica", "Trompettes", "Âne", "Selle"];
 	this.tempNames = null;
-	this.limit = 5;
+	this.limit = 2; // 5;
 	this.retrievedItems = [];
 	this.hasWon = false;
 	this.hasLost = false;
@@ -40,18 +40,21 @@ RefereeManager.prototype.judge = function judge(data, enemy) {
 }
 
 RefereeManager.prototype.playerWonAFight =  function playerWonAFight(enemy) {
-	if ((this.itemManager.currentItem.type == "any" || this.itemManager.currentItem.type == enemy.getType()) && ++this.currentCounter == this.itemManager.currentItem.counter) {
-		this.retrievedItems.push(this.currentItem);
-		if (++this.limit >= this.items.length) {
-			this.hasWon = true;
-		} else {
-			this.counterManager.incrementItem();
-			var data = getData(me);
-			this.itemManager.createItem(data);
-			this.currentCounter = 0;
-			this.counterManager.countEnemy = data.count;
-		}
+	if ((this.itemManager.currentItem.type == "any" || this.itemManager.currentItem.type == enemy.getType())) {
 		this.counterManager.incrementEnemy();
+		if (this.currentCounter == this.itemManager.currentItem.counter) {
+			this.retrievedItems.push(this.currentItem);
+			if (++this.limit >= this.items.length) {
+				this.hasWon = true;
+			} else {
+				this.counterManager.incrementItem();
+				var data = getData(me);
+				this.itemManager.createItem(data);
+				this.currentCounter = 0;
+				this.counterManager.changeMaxEnemy(data.count);
+				this.counterManager.reinitEnemy();
+			}
+		}
 	}
 };
 
@@ -65,7 +68,7 @@ RefereeManager.prototype.playerLoseAFight =  function playerLoseAFight() {
 };
 
 function getData(me) {
-	return {name : getName(me), counter : Math.floor((Math.random() * 10) + 1), type : getType()};
+	return {name : getName(me), counter : Math.floor((Math.random() * 3 /* 10 */ ) + 1), type : /* getType() */ "any"};
 };
 
 function getName(me) {
