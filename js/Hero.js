@@ -31,7 +31,7 @@ Hero.prototype.create = function create() {
 	this.sprite.animations.add('idle', [0,1]);
 	this.game.physics.arcade.enable(this.sprite);
 	this.sprite.enableBody = true;
-	this.sprite.animations.play('idle', 10, true);
+	this.sprite.animations.play('idle', 5, true);
 	
 	this.spriteDeath = this.game.add.sprite(-80,315, 'hero_death');
 	this.spriteDeath.animations.add('hero_death',[0,1,2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
