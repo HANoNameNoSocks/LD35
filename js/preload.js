@@ -10,7 +10,7 @@ preload.prototype = {
 		this.game.load.image("gameover","assets/img/gameover.png");
 		this.game.load.image("victory","assets/img/victory.png");
 		this.game.load.image("playRules","assets/img/playRules.png");
-		
+
 		this.game.load.image('fire','assets/img/fire.png');
 		this.game.load.image('plant','assets/img/plant.png');
 		this.game.load.image('water','assets/img/water.png');
@@ -19,6 +19,9 @@ preload.prototype = {
 		this.game.load.image('waterdead','assets/img/waterdead.png');
 
 		this.game.load.image("hero", "assets/img/hero.png");
+
+		this.game.load.image('fillAsset','assets/img/fillAsset.png');
+		this.game.load.image('emptyAsset','assets/img/emptyAsset.png');
 	},
   	create: function(){
 		this.game.state.start("GameTitle");

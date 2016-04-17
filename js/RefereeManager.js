@@ -8,6 +8,7 @@ function RefereeManager(game) {
 	this.retrievedItems = [];
 	this.hasWon = false;
 	this.hasLost = false;
+	this.counterManager = null;
 }
 
 RefereeManager.prototype.create = function create() {
@@ -17,8 +18,12 @@ RefereeManager.prototype.create = function create() {
 	this.itemManager = new ItemManager(this.game);
 	this.tempNames = this.names;
 	console.log("call of createItem");
-	this.itemManager.createItem(getData(me));
+	var data = getData(me);
+	this.itemManager.createItem(data);
 	this.currentCounter = 0;
+
+	this.counterManager = new CounterManager(this.game, {maxItem : this.limit, maxEnemy : data.counter, x : 10});
+	this.counterManager.create();
 }
 
 RefereeManager.prototype.update = function update() {
@@ -40,14 +45,19 @@ RefereeManager.prototype.playerWonAFight =  function playerWonAFight(enemy) {
 		if (++this.limit >= this.items.length) {
 			this.hasWon = true;
 		} else {
-			this.itemManager.createItem(getData(me));
+			this.counterManager.incrementItem();
+			var data = getData(me);
+			this.itemManager.createItem(data);
 			this.currentCounter = 0;
+			this.counterManager.countEnemy = data.count;
 		}
+		this.counterManager.incrementEnemy();
 	}
 };
 
 RefereeManager.prototype.playerDrawAFight = function playerDrawAFight() {
 	this.currentCounter = 0;
+	this.counterManager.reinitEnemy();
 };
 
 RefereeManager.prototype.playerLoseAFight =  function playerLoseAFight() {
