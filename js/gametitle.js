@@ -4,8 +4,10 @@ gameTitle.prototype = {
   	create: function(){
 
   		introSound = game.add.audio('introSound');
+
   		if (introSound.isPlaying == false)
   		{
+  			introSound.loop = true;
     	    introSound.play();
     	}else{
     		introSound.resume();
@@ -20,4 +22,4 @@ gameTitle.prototype = {
 		introSound.pause();
 		this.game.state.start("TheGame");
 	}
-}
+} 

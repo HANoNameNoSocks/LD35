@@ -31,7 +31,7 @@ preload.prototype = {
 
 		//Sound
     	game.load.audio('gameSound', 'assets/sound/gameSound.mp3');
-    	game.load.audio('introSound', 'assets/sound/introSound.wav');    	
+    	game.load.audio('introSound', 'assets/sound/introSound.mp3');    	
     	game.load.audio('winSound', 'assets/sound/winSound.ogg'); 
     	game.load.audio('loseSound', 'assets/sound/loseSound.wav'); 
     	game.load.audio('hit', 'assets/sound/hit.mp3');
