@@ -13,12 +13,16 @@ function Hero(game) {
 	this.waterbutton = null;
 
 	this.attackType = null;
+
+	this.hitsound = null;
 	
 };
 
 var shakeWorld = 0;
 
 Hero.prototype.create = function create() {
+	hitsound = game.add.audio('hit')
+
 	this.sprite = this.game.add.sprite(this.posX,this.posY, 'hero');
 	this.sprite.animations.add('idle', [1,2]);
 	this.game.physics.arcade.enable(this.sprite);
@@ -41,8 +45,8 @@ Hero.prototype.update = function update() {
 
     if (shakeWorld > 0) 
     {
-      var rand1 = game.rnd.integerInRange(-10,10);
-      var rand2 = game.rnd.integerInRange(-10,10);
+      var rand1 = game.rnd.integerInRange(-5,5);
+      var rand2 = game.rnd.integerInRange(-5,5);
       game.world.setBounds(rand1, rand2, game.width + rand1, game.height + rand2);
       shakeWorld--;
     }
@@ -55,18 +59,24 @@ Hero.prototype.update = function update() {
 Hero.prototype.fire = function fire() {
 	this.isFighting = true;
 	this.attackType = "fire";
+	shakeWorld = 5;
+	hitsound.play();
 	console.log("attack fire");
 };
 
 Hero.prototype.plant = function plant() {
 	this.isFighting = true;
 	this.attackType = "plant";
+	shakeWorld = 5;
+	hitsound.play();
 	console.log("attack plant");
 };
 
 Hero.prototype.water = function water() {
 	this.isFighting = true;
 	this.attackType = "water";
+	shakeWorld = 5;
+	hitsound.play();
 	console.log("attack water");
 };
 
