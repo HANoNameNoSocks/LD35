@@ -6,30 +6,26 @@ function Ennemy(game, velocity, type) {
 	this.type = type;
 	this.cursors = null;
 	this.posX = 800;
-	this.posY = 566;
+	this.posY = 485;
 	this.isDead = false;
 	this.isDraw = false;
 };
 
-var key1;
-var arr = ["plant", "plant","plant"];
+var arr = ["fire", "water","plant"];
 var arrDead = ["firedead","waterdead","plantdead"];
-var arrMonkey = ["sprPlant","sprPlant","sprPlant"];
+var arrMonkey = ["sprFire","sprWater","sprPlant"];
 var animation = 15;
 
 Ennemy.prototype.create = function create() {
-    game.stage.backgroundColor = '#736357';
 
-
-    key1 = game.input.keyboard.addKey(Phaser.Keyboard.ONE);
 	// PHYSICS PROPERTIES
 
-    this.ennemySprite = game.add.sprite(700, 485, arrMonkey[this.type]);
+    this.ennemySprite = game.add.sprite(this.posX, this.posY, arrMonkey[this.type]);
 
     this.ennemySprite.animations.add('walk', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
     this.ennemySprite.animations.play('walk', animation, true);
-    this.animation++;
+    animation++;
     console.log("animation = " + animation);
 
 
