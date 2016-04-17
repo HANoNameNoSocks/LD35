@@ -56,10 +56,7 @@ CounterManager.prototype = {
 	},
 
 	incrementItem : function() {
-		this.itemCounter.kill();
-		this.itemCount++;
-		this.itemCounter = new TextCounter(this.game);
-		this.itemCounter.create(10, 10, itemCount, this.maxItem);
+		this.itemCounter.changeText(++this.itemCount, this.maxItem);
 	},
 
 	changeMaxEnemy : function(newMax) {
