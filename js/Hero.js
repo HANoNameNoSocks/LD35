@@ -10,24 +10,25 @@ function Hero(game) {
 
 	this.isDead = false;
 	this.isFighting = false;
-
 	this.alreadyDead = false;
 
 	this.mustBash = false;
 
 
 	this.bashbutton = null;
+	this.cursors = null;
+
 	this.firebutton = null;
 	this.plantbutton = null;
 	this.waterbutton = null;
+	this.bashCount = 0;
+
 
 	this.attackType = null;
 
 	this.hitsound = null;
 	this.shakeWorld = 0;
-	this.bashCount = 0;
 };
-
 
 Hero.prototype.create = function create() {
 	hitsound = game.add.audio('hit');
@@ -68,16 +69,17 @@ Hero.prototype.create = function create() {
 	this.spriteWater.animations.currentAnim.onComplete.add(this._waterCallback, this);
 	
 
-
 	this.firebutton = this.game.input.keyboard.addKey(Phaser.Keyboard.W);
 	this.plantbutton = this.game.input.keyboard.addKey(Phaser.Keyboard.C);
 	this.waterbutton = this.game.input.keyboard.addKey(Phaser.Keyboard.X);
 	this.bashbutton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
+
 	this.firebutton.onDown.add(this.fire, this);
 	this.plantbutton.onDown.add(this.plant, this);
 	this.waterbutton.onDown.add(this.water, this);
 	this.bashbutton.onDown.add(this.bash, this);
+
 };
 
 Hero.prototype.update = function update() {
@@ -98,28 +100,11 @@ Hero.prototype.update = function update() {
 		if (this.shakeWorld == 0) {
 			game.world.setBounds(0, 0, game.width,game.height);
 		}
-	}else{
-		if (this.isDead == false) {
-			this.attackType = null;
-			this.isFighting = false;
-
-			if (this.shakeWorld > 0) 
-			{
-			  var rand1 = game.rnd.integerInRange(-5,5);
-			  var rand2 = game.rnd.integerInRange(-5,5);
-			  game.world.setBounds(rand1, rand2, game.width + rand1, game.height + rand2);
-			  this.shakeWorld--;
+	} else {
+		if(!this.spriteFire.animations.isPlaying && !this.spritePlant.animations.isPlaying && !this.spriteWater.animations.isPlaying){ 
+			if(this.alreadyDead == false){
+				this._heroDeathAnimation();
 			}
-
-			if (this.shakeWorld == 0) {
-			  game.world.setBounds(0, 0, game.width,game.height);
-			}
-		} else {
-			if(!this.spriteFire.animations.isPlaying && !this.spritePlant.animations.isPlaying && !this.spriteWater.animations.isPlaying){ 
-				if(this.alreadyDead == false){
-					this._heroDeathAnimation();
-				}
-		}
 		}
 	}
 };
@@ -208,11 +193,10 @@ Hero.prototype._heroDeathAnimation = function _heroDeathAnimation() {
 Hero.prototype.bash = function bash() {
 	if (this.mustBash) {
 		this.bashCount++;
-		console.log(this.bashCount);
 	} else {
 		this.bashCount = 0;
 	}
-
+	this.spriteDeath.animations.play('death',20,true);
 };
 
 Hero.prototype.isDead = function isDead() {
@@ -224,9 +208,10 @@ Hero.prototype.getType = function getType() {
 };
 
 Hero.prototype.getBashCount = function getBashCount() {
-	return this.bashCount;
+    return this.bashCount;
 };
 
+ 
 Hero.prototype.setIsDead = function setIsDead(isDead) {
 	this.isDead = isDead;
 };

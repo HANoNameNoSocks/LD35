@@ -8,6 +8,7 @@ var theGame = function(game) {
 	this.fightManager = null;
 	this.referee = null;
 	this.music = null;
+	this.timeCheck = null;
 
 }
 
@@ -39,7 +40,7 @@ theGame.prototype = {
 	},
 
 	update: function() {
-				this.ennemy = this.ennemyManager.getEnnemy();
+		this.ennemy = this.ennemyManager.getEnnemy();
 
 		if (this.referee.hasLost) {
 			music.pause();
@@ -50,40 +51,37 @@ theGame.prototype = {
 		} else {
 			if (!this.ennemy.isDead) {
 				var fightResult = this.fightManager.fight(this.hero, this.ennemy);
-
 				if (this.ennemy.isDraw) {
-					if (this.timeCheck == null) {
-						this.timeCheck = this.game.time.now;
-					}
-					this.hero.mustBash = true;
+				if (this.timeCheck == null) {
+					this.timeCheck = this.game.time.now;
+				}
+				this.hero.mustBash = true;
 
-					var tempEnnemyVelocity = this.ennemy.ennemySprite.body.velocity.x;
-					this.ennemy.ennemySprite.body.velocity.x = 0;
+				var tempEnnemyVelocity = this.ennemy.ennemySprite.body.velocity.x;
+				this.ennemy.ennemySprite.body.velocity.x = 0;
 
-					var time = this.game.time.now - this.timeCheck;
+				if (this.game.time.now - this.timeCheck < 1500) {
+					this.hero.update();
+				} else {
+					var bashCounter = this.hero.getBashCount();
+					this.hero.mustBash = false;
+					this.timeCheck = null;
 
-					if (this.game.time.now - this.timeCheck < 1500) {
-						this.hero.update();
-					} else {
-						var bashCounter = this.hero.getBashCount();
-						this.hero.mustBash = false;
+					if (bashCounter >= 5) {
+						
 						this.ennemy.setisDead(true);
-							this.timeCheck = null;
-
-						if (bashCounter >= 5) {
-							fightResult = 0;
-						} else {
-							fightResult = -1;
-							this.ennemy.ennemySprite.body.velocity.x = tempEnnemyVelocity;
-						}
+						fightResult = 0;
+					} else {
+						fightResult = -1;
+						this.ennemy.ennemySprite.body.velocity.x = tempEnnemyVelocity;
 					}
 				}
-
+				}
 				this.referee.judge(fightResult, this.ennemy);
 			}
+			
 		}
-
-		this.hero.update();
+		this.hero.update();	
 		this.ennemyManager.update();
 		this.referee.update();
 	},
