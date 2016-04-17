@@ -8,40 +8,35 @@ FightManager.prototype.create = function create() {
 
 FightManager.prototype.fight = function fight(player,ennemy) {
 
-	if( ( ennemy.getPosX < 500 ) && ( ennemy.getPosX > 300 ) && ( player.isDead == false ) && ( ennemy.isDead() == false ) )
+	if( ( ennemy.getPosX() <= 350 ) && ( ennemy.getPosX() >= 250 ) )
 	{
-		console.log('fight processing');
-		console.log('ennemy type : ' + ennemy.getType());
-		console.log('player type : ' + player.getType());
-
 		if( ((player.getType() == 'fire') && (ennemy.getType() == 'plant')) || ((player.getType() == 'plant') && (ennemy.getType() == 'water')) || ((player.getType() == 'water') &&  (ennemy.getType() == 'fire')))
 		{
 			ennemy.setisDead(true);
-			console.log('dead ennemy');
 			return 1;
 		}
 		else if( player.getType() == ennemy.getType() )
 		{
-			ennemy.setisDead(true);
-			console.log('dead ennemy');
+			ennemy.setisDraw(true);
 			return 0;
 		}
 		else if ( ((player.getType() == 'fire') && (ennemy.getType() == 'water')) ||  ((player.getType() == 'plant') && (ennemy.getType() == 'fire')) || ((player.getType() == 'water') && (ennemy.getType() == 'plant')))
 		{
 			player.setIsDead(true);
-			console.log('dead player');
 			return -1;
 		}
-
+	}
+	else if((player.getType() == null) && ( ennemy.getPosX() < 250 )  && ( ennemy.getisDraw() == false ))
+	{
+			player.setIsDead(true);
+			return -1;
 	}
 	else
 	{
 		return null;
 	}
-
 };
 
 FightManager.prototype.update = function update() {
 	
 };
-
