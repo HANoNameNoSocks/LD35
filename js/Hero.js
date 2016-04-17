@@ -48,6 +48,7 @@ Hero.prototype.create = function create() {
 	this.game.physics.arcade.enable(this.spriteDeath);
 	this.spriteDeath.enableBody = true;
 	this.spriteDeath.visible = false;	
+	this.spriteDeath.animations.currentAnim.onComplete.add(this._heroDeathCallback, this);
 	
 	this.spriteFire = this.game.add.sprite(130,340, 'hero_fire');
 	this.spriteFire.animations.add('fire',[0,1,2,3,5,6,7,8,9]);
@@ -184,6 +185,10 @@ Hero.prototype.water = function water() {
 	}
 };
 
+Hero.prototype._heroDeathCallback = function _heroDeathCallback() {
+	this.spriteDeath.visible = false;
+};
+
 Hero.prototype._heroDeathAnimation = function _heroDeathAnimation() {
 	this.sprite.destroy();
 	this.spriteDeath.visible = true;
@@ -197,7 +202,6 @@ Hero.prototype.bash = function bash() {
 	} else {
 		this.bashCount = 0;
 	}
-	this.spriteDeath.animations.play('death',20,true);
 };
 
 Hero.prototype.isDead = function isDead() {
@@ -211,7 +215,6 @@ Hero.prototype.getType = function getType() {
 Hero.prototype.getBashCount = function getBashCount() {
     return this.bashCount;
 };
-
  
 Hero.prototype.setIsDead = function setIsDead(isDead) {
 	this.isDead = isDead;
