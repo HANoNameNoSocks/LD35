@@ -93,7 +93,7 @@ Ennemy.prototype.kill = function kill () {
     }
 
   	this.ennemySprite.destroy();
-  	this.ennemySprite = game.add.sprite(oldX, 566, arrMonkey[this.type]);
+  	this.ennemySprite = game.add.sprite(oldX, this.posY, arrMonkey[this.type]);
   	this.ennemySprite.animations.add('walk', [1,2]);
   	this.game.physics.arcade.enable(this.ennemySprite);
 
