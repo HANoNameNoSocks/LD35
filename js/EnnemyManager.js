@@ -37,7 +37,7 @@ EnnemyManager.prototype = {
 	
 	_startSpawnClock : function (){
 		if(this.spawnClock.isRunning==false){
-				this.spawnClock.startTimer();
+			this.spawnClock.startTimer();
 		}
 	},
 	
