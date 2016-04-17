@@ -2,8 +2,7 @@ var preload = function(game){}
 
 preload.prototype = {
 	preload: function(){ 
-        var loadingBar = this.add.sprite(160,240,"loading");
-        loadingBar.anchor.setTo(0.5,0.5);
+        var loadingBar = this.add.sprite(200,240,"loading");
         this.load.setPreloadSprite(loadingBar);
 
         //Spritesheet
