@@ -40,12 +40,19 @@ CounterManager.prototype = {
 	},
 
 	update : function() {
+		for (var k = 0; k < this.enemyDone.length; k++) {
+			this.enemyDone[k].update();
+		}
 	},
 
 	incrementEnemy : function() {
 		this.enemyCount++;
 		this.enemyToDo[this.enemyCount - 1].getSprite().visible = false;
-		this.enemyDone[this.enemyCount - 1].getSprite().visible = true;
+		var sprite = this.enemyDone[this.enemyCount - 1].getSprite();
+		sprite.visible = true;
+		this.game.physics.arcade.enable(sprite);
+		sprite.enableBody = true;
+		sprite.body.gravity.y = -40;
 	},
 
 	reinitEnemy : function() {
@@ -61,6 +68,10 @@ CounterManager.prototype = {
 	},
 
 	incrementItem : function() {
+		this.game.time.events.add(Phaser.Timer.SECOND * 2, this.changeText, this);
+	},
+
+	changeText : function() {
 		this.itemCounter.changeText(++this.itemCount);
 	},
 

@@ -28,6 +28,7 @@ RefereeManager.prototype.create = function create() {
 }
 
 RefereeManager.prototype.update = function update() {
+	this.counterManager.update();
 };
 
 RefereeManager.prototype.judge = function judge(data, enemy) {
@@ -54,10 +55,14 @@ RefereeManager.prototype.playerWonAFight =  function playerWonAFight(enemy) {
 				this.itemManager.createItem(data);
 				this.currentCounter = 0;
 				this.counterManager.changeMaxEnemy(data.counter);
-				this.counterManager.reinitEnemy();
+				this.game.time.events.add(Phaser.Timer.SECOND * 2, this.reinitEnemy, this);
 			}
 		}
 	}
+};
+
+RefereeManager.prototype.reinitEnemy = function reinitEnemy() {
+	this.counterManager.reinitEnemy();
 };
 
 RefereeManager.prototype.playerDrawAFight = function playerDrawAFight() {
