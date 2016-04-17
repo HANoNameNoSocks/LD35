@@ -9,6 +9,7 @@ function Ennemy(game, velocity, type) {
 	this.posY = 485;
 	this.isDead = false;
 	this.isDraw = false;
+	this.counterDeath = 0;
 };
 
 var arr = ["fire", "water","plant"];
@@ -16,9 +17,13 @@ var arrDead = ["firedead","waterdead","plantdead"];
 var arrMonkey = ["sprFire","sprWater","sprPlant"];
 var animation = 15;
 
+
 Ennemy.prototype.create = function create() {
 
 	// PHYSICS PROPERTIES
+ 	ennemyDeathsound = game.add.audio('ennemyDeath');
+ 	spawnEnnemysound = game.add.audio('spawnEnnemy');
+ 	spawnEnnemysound.play();
 
     this.ennemySprite = game.add.sprite(this.posX, this.posY, arrMonkey[this.type]);
 
@@ -59,7 +64,7 @@ Ennemy.prototype.getisDraw = function getisDraw() {
 };
 
 Ennemy.prototype.getPosX = function getPosX(){
-	console.log()
+
 	return this.ennemySprite.x;
 };
 
@@ -76,8 +81,19 @@ Ennemy.prototype.destroy = function destroy () {
 Ennemy.prototype.kill = function kill () {
   	var start = new Date().getTime();
  	var oldX = this.ennemySprite.x;
+
+
+
+	this.counterDeath++;
+
+  	if (ennemyDeathsound.isPlaying == false && this.counterDeath==1)
+  	{
+  		console.log("coucou");
+        ennemyDeathsound.play();
+    }
+
   	this.ennemySprite.destroy();
-  	this.ennemySprite = game.add.sprite(oldX, 566, arrMonkey[this.type]);
+  	this.ennemySprite = game.add.sprite(oldX, this.posY, arrMonkey[this.type]);
   	this.ennemySprite.animations.add('walk', [1,2]);
   	this.game.physics.arcade.enable(this.ennemySprite);
 
