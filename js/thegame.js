@@ -75,7 +75,7 @@ theGame.prototype = {
 							this.timeCheck = null;
 
 						if (bashCounter >= 5) {
-							fightResult = 1;
+							fightResult = 0;
 						} else {
 							fightResult = -1;
 							this.ennemy.ennemySprite.body.velocity.x = tempEnnemyVelocity;
