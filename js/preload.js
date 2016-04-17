@@ -28,7 +28,7 @@ preload.prototype = {
 		this.game.load.image('emptyAsset','assets/img/emptyAsset.png');
 
 		//Sound
-    	game.load.audio('gameSound', 'assets/sound/gameSound.ogg');
+    	game.load.audio('gameSound', 'assets/sound/gameSound.mp3');
     	game.load.audio('hit', 'assets/sound/hit.mp3');
     	game.load.audio('ennemyDeath', 'assets/sound/ennemyDeath.wav');
     	game.load.audio('playerDeath', 'assets/sound/playerDeath.wav');
