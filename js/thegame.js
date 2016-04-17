@@ -41,35 +41,64 @@ theGame.prototype = {
 	},
 
 	update: function() {
-		this.ennemy = this.ennemyManager.getEnnemy();
+				this.ennemy = this.ennemyManager.getEnnemy();
 
 		if (this.referee.hasLost) {
 			console.log('you lose');
 			music.pause();
-			game.time.events.add(Phaser.Timer.SECOND * 1, this.lose, this);
+			this.lose();
 		} else if (this.referee.hasWon) {
 			console.log('you win');
 			music.pause();
 			this.win();
 		} else {
 			if (!this.ennemy.isDead) {
-				console.log('FIGHT');
 				var fightResult = this.fightManager.fight(this.hero, this.ennemy);
+
+				if (this.ennemy.isDraw) {
+					if (this.timeCheck == null) {
+						this.timeCheck = this.game.time.now;
+					}
+					this.hero.mustBash = true;
+
+					var tempEnnemyVelocity = this.ennemy.ennemySprite.body.velocity.x;
+					this.ennemy.ennemySprite.body.velocity.x = 0;
+
+					var time = this.game.time.now - this.timeCheck;
+
+					if (this.game.time.now - this.timeCheck < 1500) {
+						this.hero.update();
+					} else {
+						var bashCounter = this.hero.getBashCount();
+						this.hero.mustBash = false;
+						this.ennemy.setisDead(true);
+							this.timeCheck = null;
+
+						if (bashCounter >= 5) {
+							fightResult = 1;
+						} else {
+							fightResult = -1;
+							this.ennemy.ennemySprite.body.velocity.x = tempEnnemyVelocity;
+						}
+					}
+				}
 
 				this.referee.judge(fightResult, this.ennemy);
 			}
 		}
 
-		this.hero.update();	
+		this.hero.update();
 		this.ennemyManager.update();
 		this.referee.update();
 	},
 
 	lose: function() {
+		music.pause();
 		this.game.state.start("GameOver");	
 	},
 
 	win: function() {
+		music.pause();
 		this.game.state.start("Victory");
 	}
 }
