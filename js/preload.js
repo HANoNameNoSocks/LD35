@@ -22,8 +22,8 @@ preload.prototype = {
 		//Image
 		this.game.load.image("gametitle","assets/img/gametitle.jpg");
 		this.game.load.image("play","assets/img/play.png");
-		this.game.load.image("gameover","assets/img/gameover.png");
-		this.game.load.image("victory","assets/img/victory.png");
+		this.game.load.image("gameover","assets/img/gameover.jpg");
+		this.game.load.image("victory","assets/img/victory.jpg");
 		this.game.load.image("playRules","assets/img/playRules.png");
 		this.game.load.image('fire','assets/img/fire.png');
 		this.game.load.image('plant','assets/img/plant.png');
