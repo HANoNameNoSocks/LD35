@@ -1,8 +1,8 @@
 function Hero(game) {
 	this.game = game;
 	this.sprite = null;
-	this.posX = 210;
-	this.posY = 566;
+	this.posX = 130;
+	this.posY = 450;
 
 	this.isDead = false;
 	this.isFighting = false;
@@ -18,8 +18,12 @@ function Hero(game) {
 
 Hero.prototype.create = function create() {
 	this.sprite = this.game.add.sprite(this.posX,this.posY, 'hero');
+	this.sprite.animations.add('idle', [1,2]);
 	this.game.physics.arcade.enable(this.sprite);
-
+	
+  	this.sprite.animations.add('idle', [1,2]);
+	this.sprite.animations.play('idle', 3000, true);
+	
 	this.cursors = this.game.input.keyboard.createCursorKeys();
 
 	this.firebutton = this.game.input.keyboard.addKey(Phaser.Keyboard.W)

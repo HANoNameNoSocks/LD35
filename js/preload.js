@@ -22,7 +22,7 @@ preload.prototype = {
 
  	 	this.game.load.spritesheet('sprPlant', 'assets/img/enemy.png', 110,115,10);
 
-		this.game.load.image("hero", "assets/img/hero.png");
+		this.game.load.spritesheet('hero', 'assets/img/hero_idle.png', 150,150,2);
 
 		this.game.load.image('fillAsset','assets/img/fillAsset.png');
 		this.game.load.image('emptyAsset','assets/img/emptyAsset.png');
