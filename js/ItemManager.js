@@ -10,6 +10,5 @@ ItemManager.prototype.update = function update() {
 };
 
 ItemManager.prototype.createItem = function createItem(data) {
-	console.log("start of createItem");
 	this.currentItem = new Item(this.game, data);
 };

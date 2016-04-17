@@ -30,7 +30,6 @@ Ennemy.prototype.create = function create() {
 
     this.ennemySprite.animations.play('walk', animation, true);
     animation++;
-    console.log("animation = " + animation);
 
 
 	// PHYSICS PROPERTIES
@@ -95,7 +94,6 @@ Ennemy.prototype.kill = function kill () {
   	this.ennemySprite = game.add.sprite(oldX, this.posY, arrDead[this.type]);
   	this.ennemySprite.animations.add('dead', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
  	this.ennemySprite.animations.play('dead', 15, false, false,false);
- 	console.log("alors ?")
   	this.game.physics.arcade.enable(this.ennemySprite);
 
 	this.ennemySprite.enableBody = true;

@@ -14,11 +14,8 @@ function RefereeManager(game) {
 
 RefereeManager.prototype.create = function create() {
 	var me = this;
-	console.log("start of prototype.create");
-	console.log("call of new ItemManager");
 	this.itemManager = new ItemManager(this.game);
 	this.tempNames = this.names;
-	console.log("call of createItem");
 	var data = getData(me);
 	this.itemManager.createItem(data);
 	this.currentCounter = 0;
