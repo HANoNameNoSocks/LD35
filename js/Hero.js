@@ -129,7 +129,7 @@ Hero.prototype.fire = function fire() {
 			this.spriteFire.animations.isPlaying = true;
 			this.spriteWater.animations.isPlaying = false;
 			this.spritePlant.animations.isPlaying = false;
-			this.shakeWorld = 5;
+			this.shakeWorld = 25;
 			hitFiresound.play();
 		}
 	}
@@ -153,7 +153,7 @@ Hero.prototype.plant = function plant() {
 			this.spriteWater.animations.isPlaying = false;
 			this.spritePlant.animations.isPlaying = true;
 			this.spriteFire.animations.isPlaying = false;
-			this.shakeWorld = 5;
+			this.shakeWorld = 25;
 			hitPlantsound.play();
 		}
 	}
