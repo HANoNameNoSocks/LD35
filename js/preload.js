@@ -39,16 +39,16 @@ preload.prototype = {
 		//Sound
     	game.load.audio('gameSound', 'assets/sound/gameSound.mp3');
     	game.load.audio('introSound', 'assets/sound/introSound.mp3');    	
-    	game.load.audio('winSound', 'assets/sound/winSound.ogg'); 
-    	game.load.audio('loseSound', 'assets/sound/loseSound.wav'); 
+    	game.load.audio('winSound', 'assets/sound/winSound.mp3'); 
+    	game.load.audio('loseSound', 'assets/sound/loseSound.mp3'); 
     	game.load.audio('hit', 'assets/sound/hit.mp3');
     	game.load.audio('hitWater', 'assets/sound/hitWater.mp3');
     	game.load.audio('hitFire', 'assets/sound/hitFire.mp3');
     	game.load.audio('hitPlant', 'assets/sound/hitPlant.mp3');
     	game.load.audio('ennemyDeath', 'assets/sound/ennemyDeath.mp3');
     	game.load.audio('playerDeath', 'assets/sound/playerDeath.mp3');
-    	game.load.audio('screenShake', 'assets/sound/screenShake.wav');
-    	game.load.audio('spawnEnnemy', 'assets/sound/spawnEnnemy.wav');    	
+    	game.load.audio('screenShake', 'assets/sound/screenShake.mp3');
+    	game.load.audio('spawnEnnemy', 'assets/sound/spawnEnnemy.mp3');    	
     	game.load.audio('draw', 'assets/sound/draw.mp3'); 
 
 	},
