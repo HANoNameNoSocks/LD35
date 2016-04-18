@@ -53,6 +53,9 @@ preload.prototype = {
 
 	},
   	create: function(){
+  		this.game.time.events.add(Phaser.Timer.SECOND * 5, this._startGame, this);	
+	},
+	_startGame: function(){
 		this.game.state.start("GameTitle");
 	}
 }
