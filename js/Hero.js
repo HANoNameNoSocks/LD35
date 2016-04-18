@@ -31,7 +31,6 @@ function Hero(game) {
 };
 
 Hero.prototype.create = function create() {
-	hitsound = game.add.audio('hit');
 	hitWatersound = game.add.audio('hitWater');
 	hitFiresound = game.add.audio('hitFire');
 	hitPlantsound = game.add.audio('hitPlant');
@@ -110,6 +109,28 @@ Hero.prototype.update = function update() {
 			if(this.alreadyDead == false){
 				this._heroDeathAnimation();
 			}
+		} 
+		else{
+			if(this.spriteFire.animations.isPlaying){
+				this.spriteFire.animations.stop();
+				this.spriteFire.animations.isPlaying = false;
+				this.spriteFire.visible = false;
+				this.sprite.visible = true;
+				this._heroDeathAnimation();
+			}else if(this.spritePlant.animations.isPlaying){
+				this.spritePlant.animations.stop();
+				this.spritePlant.animations.isPlaying = false;
+				this.spritePlant.visible = false;
+				this.sprite.visible = true;
+				this._heroDeathAnimation();
+			}else if(this.spriteWater.animations.isPlaying){
+				this.spriteWater.animations.stop();
+				this.spriteWater.animations.isPlaying = false;
+				this.spriteWater.visible = false;
+				this.sprite.visible = true;
+				this._heroDeathAnimation();
+			}
+
 		}
 	}
 };
@@ -122,7 +143,7 @@ Hero.prototype._fireCallback = function _fireCallback() {
 
 Hero.prototype.fire = function fire() {
 
-	if(this.isDead == false){
+	if(this.isDead == false && this.mustBash == false){
 		if(!this.spriteFire.animations.isPlaying && !this.spritePlant.animations.isPlaying && !this.spriteWater.animations.isPlaying){ 
 			this.isFighting = true;
 			this.attackType = "fire";
@@ -146,7 +167,7 @@ Hero.prototype._plantCallback = function _plantCallback() {
 
 Hero.prototype.plant = function plant() {
 
-	if(this.isDead == false){
+	if(this.isDead == false && this.mustBash == false){
 		if(!this.spriteFire.animations.isPlaying && !this.spritePlant.animations.isPlaying && !this.spriteWater.animations.isPlaying){
 			this.isFighting = true;
 			this.attackType = "plant";
@@ -171,7 +192,7 @@ Hero.prototype._waterCallback = function _waterCallback() {
 
 Hero.prototype.water = function water() {
 
-	if(this.isDead == false){
+	if(this.isDead == false && this.mustBash == false){
 		if(!this.spriteFire.animations.isPlaying && !this.spritePlant.animations.isPlaying && !this.spriteWater.animations.isPlaying){
 			this.isFighting = true;
 			this.attackType = "water";
