@@ -31,7 +31,6 @@ function Hero(game) {
 };
 
 Hero.prototype.create = function create() {
-	hitsound = game.add.audio('hit');
 	hitWatersound = game.add.audio('hitWater');
 	hitFiresound = game.add.audio('hitFire');
 	hitPlantsound = game.add.audio('hitPlant');
