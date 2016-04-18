@@ -21,10 +21,10 @@ preload.prototype = {
 
 		//Image
 		this.game.load.image("gametitle","assets/img/gametitle.jpg");
-		this.game.load.image("play","assets/img/play.png");
+		//this.game.load.image("play","assets/img/play.png");
 		this.game.load.image("gameover","assets/img/gameover.jpg");
 		this.game.load.image("victory","assets/img/victory.jpg");
-		this.game.load.image("playRules","assets/img/playRules.png");
+		//this.game.load.image("playRules","assets/img/playRules.png");
 		this.game.load.image('fire','assets/img/fire.png');
 		this.game.load.image('plant','assets/img/plant.png');
 		this.game.load.image('water','assets/img/water.png');
@@ -39,9 +39,9 @@ preload.prototype = {
 		//Sound
     	game.load.audio('gameSound', 'assets/sound/gameSound.mp3');
     	game.load.audio('introSound', 'assets/sound/introSound.mp3');    	
-    	game.load.audio('winSound', 'assets/sound/winSound.mp3'); 
+    	//game.load.audio('winSound', 'assets/sound/winSound.mp3'); 
     	game.load.audio('loseSound', 'assets/sound/loseSound.mp3'); 
-    	game.load.audio('hit', 'assets/sound/hit.mp3');
+    	//game.load.audio('hit', 'assets/sound/hit.mp3');
     	game.load.audio('hitWater', 'assets/sound/hitWater.mp3');
     	game.load.audio('hitFire', 'assets/sound/hitFire.mp3');
     	game.load.audio('hitPlant', 'assets/sound/hitPlant.mp3');
