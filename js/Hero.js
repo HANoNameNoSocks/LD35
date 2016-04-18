@@ -36,6 +36,7 @@ Hero.prototype.create = function create() {
 	hitFiresound = game.add.audio('hitFire');
 	hitPlantsound = game.add.audio('hitPlant');
 	screenShakesound = game.add.audio('screenShake');
+	playerDeathsound = game.add.audio('playerDeath');
 
 	this.sprite = this.game.add.sprite(this.posX,this.posY, 'hero_idle');
 	this.sprite.animations.add('idle', [0,1]);
@@ -191,6 +192,7 @@ Hero.prototype._heroDeathCallback = function _heroDeathCallback() {
 
 Hero.prototype._heroDeathAnimation = function _heroDeathAnimation() {
 	this.sprite.destroy();
+	playerDeathsound.play();
 	this.spriteDeath.visible = true;
 	this.spriteDeath.animations.play('death', 20, false, false, false);
 	this.alreadyDead = true;

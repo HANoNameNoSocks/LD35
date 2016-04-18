@@ -19,6 +19,7 @@ var animation = 15;
 
 
 Ennemy.prototype.create = function create() {
+	ennemyDeathsound = game.add.audio('ennemyDeath');
 
 	// PHYSICS PROPERTIES
  	spawnEnnemysound = game.add.audio('spawnEnnemy');
@@ -93,6 +94,7 @@ Ennemy.prototype.kill = function kill () {
 
   	this.ennemySprite.destroy();
   	this.setIsSpriteDestroy(true);
+  	ennemyDeathsound.play();
   	this.ennemySprite = game.add.sprite(oldX, this.posY, arrDead[this.type]);
   	this.ennemySprite.animations.add('dead', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
  	this.ennemySprite.animations.play('dead', 15, false, false,false);
