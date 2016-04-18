@@ -6,7 +6,7 @@ function Ennemy(game, velocity, type) {
 	this.type = type;
 	this.cursors = null;
 	this.posX = 800;
-	this.posY = 485;
+	this.posY = 465;
 	this.isDead = false;
 	this.isDraw = false;
 	this.isSpriteDestroy = false;
@@ -19,6 +19,7 @@ var animation = 15;
 
 
 Ennemy.prototype.create = function create() {
+	ennemyDeathsound = game.add.audio('ennemyDeath');
 
 	// PHYSICS PROPERTIES
  	spawnEnnemysound = game.add.audio('spawnEnnemy');
@@ -29,7 +30,6 @@ Ennemy.prototype.create = function create() {
     this.ennemySprite.animations.add('walk', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
     this.ennemySprite.animations.play('walk', animation, true);
-    animation++;
 
 
 	// PHYSICS PROPERTIES
@@ -43,6 +43,9 @@ Ennemy.prototype.create = function create() {
 
 
 Ennemy.prototype.update = function update() {
+	if(!this.isDraw && !this.isDead){
+		this.ennemySprite.body.velocity.x = this.velocity;
+	}
 };
 
 
@@ -91,7 +94,8 @@ Ennemy.prototype.kill = function kill () {
 
   	this.ennemySprite.destroy();
   	this.setIsSpriteDestroy(true);
-  	this.ennemySprite = game.add.sprite(oldX, this.posY, arrDead[this.type]);
+  	ennemyDeathsound.play();
+  	this.ennemySprite = game.add.sprite(oldX, this.posY - 40, arrDead[this.type]);
   	this.ennemySprite.animations.add('dead', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
  	this.ennemySprite.animations.play('dead', 15, false, false,false);
   	this.game.physics.arcade.enable(this.ennemySprite);
