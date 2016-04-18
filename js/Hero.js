@@ -122,7 +122,7 @@ Hero.prototype._fireCallback = function _fireCallback() {
 
 Hero.prototype.fire = function fire() {
 
-	if(this.isDead == false){
+	if(this.isDead == false && this.mustBash == false){
 		if(!this.spriteFire.animations.isPlaying && !this.spritePlant.animations.isPlaying && !this.spriteWater.animations.isPlaying){ 
 			this.isFighting = true;
 			this.attackType = "fire";
@@ -146,7 +146,7 @@ Hero.prototype._plantCallback = function _plantCallback() {
 
 Hero.prototype.plant = function plant() {
 
-	if(this.isDead == false){
+	if(this.isDead == false && this.mustBash == false){
 		if(!this.spriteFire.animations.isPlaying && !this.spritePlant.animations.isPlaying && !this.spriteWater.animations.isPlaying){
 			this.isFighting = true;
 			this.attackType = "plant";
@@ -171,7 +171,7 @@ Hero.prototype._waterCallback = function _waterCallback() {
 
 Hero.prototype.water = function water() {
 
-	if(this.isDead == false){
+	if(this.isDead == false && this.mustBash == false){
 		if(!this.spriteFire.animations.isPlaying && !this.spritePlant.animations.isPlaying && !this.spriteWater.animations.isPlaying){
 			this.isFighting = true;
 			this.attackType = "water";
