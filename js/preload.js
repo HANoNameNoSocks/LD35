@@ -2,8 +2,7 @@ var preload = function(game){}
 
 preload.prototype = {
 	preload: function(){ 
-        var loadingBar = this.add.sprite(160,240,"loading");
-        loadingBar.anchor.setTo(0.5,0.5);
+        var loadingBar = this.add.sprite(200,240,"loading");
         this.load.setPreloadSprite(loadingBar);
 
         //Spritesheet
@@ -21,10 +20,10 @@ preload.prototype = {
 		this.game.load.spritesheet('hero_water', 'assets/img/hero_water.png', 150,265,10); 
 
 		//Image
-		this.game.load.image("gametitle","assets/img/gametitle.png");
+		this.game.load.image("gametitle","assets/img/gametitle.jpg");
 		this.game.load.image("play","assets/img/play.png");
-		this.game.load.image("gameover","assets/img/gameover.png");
-		this.game.load.image("victory","assets/img/victory.png");
+		this.game.load.image("gameover","assets/img/gameover.jpg");
+		this.game.load.image("victory","assets/img/victory.jpg");
 		this.game.load.image("playRules","assets/img/playRules.png");
 		this.game.load.image('fire','assets/img/fire.png');
 		this.game.load.image('plant','assets/img/plant.png');
@@ -35,6 +34,7 @@ preload.prototype = {
 		this.game.load.image('fillAsset','assets/img/fillAsset.png');
 		this.game.load.image('emptyAsset','assets/img/emptyAsset.png');
 		this.game.load.image('item','assets/img/item.png');
+		this.game.load.image("background", "assets/img/game_bg.jpg");  
 
 		//Sound
     	game.load.audio('gameSound', 'assets/sound/gameSound.mp3');
