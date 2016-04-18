@@ -88,6 +88,22 @@ Ennemy.prototype.destroy = function destroy () {
     this.ennemySprite.destroy();
 };
 
+Ennemy.prototype._flashBeforeDeathTintActivated = function _flashBeforeDeathTintActivated(){
+	this.ennemySprite.tint= 0xffff00;
+};
+Ennemy.prototype._flashBeforeDeathTintDeactivated = function _flashBeforeDeathTintDeactivated(){
+	this.ennemySprite.tint= 0xffffff;
+};
+
+Ennemy.prototype._flashBeforeDeath = function _flashBeforeDeath(){
+	for(var i=0 ; i<5 ; i++){
+		var tint = 1000 + 2 * i * 100;
+		game.time.events.add(tint, this._flashBeforeDeathTintActivated, this);
+		var noTint = 1000 + (2 * i + 1) * 100;
+  		game.time.events.add(noTint, this._flashBeforeDeathTintDeactivated, this);
+	}
+};
+
 Ennemy.prototype.kill = function kill () {
   	var start = new Date().getTime();
  	var oldX = this.ennemySprite.x;
@@ -99,13 +115,12 @@ Ennemy.prototype.kill = function kill () {
   	this.ennemySprite.animations.add('dead', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
  	this.ennemySprite.animations.play('dead', 15, false, false,false);
   	this.game.physics.arcade.enable(this.ennemySprite);
-
+  	this._flashBeforeDeath();
 	this.ennemySprite.enableBody = true;
 	this.ennemySprite.body.velocity.x = 0;
     game.time.events.add(2000, this.destroy, this);
 
-
-  	};
+};
 
 
 
