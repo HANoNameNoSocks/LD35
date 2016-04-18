@@ -22,10 +22,10 @@ SpawnClock.prototype = {
 	startTimer : function(){
 		this.isRunning = true;
 		this.timer = game.time.events.add(Phaser.Timer.SECOND * this.startSpawn, this._enableSpawn, this);
-		if(this.startSpawn > 0){
-			this.startSpawn += this.startDownSpawn;
+		if(this.startSpawn + this.startDownSpawn < 0.3){
+			this.startSpawn = 0.3;
 		}else{
-			this.startSpawn = 0;
+			this.startSpawn += this.startDownSpawn;
 		}
 	},
 	

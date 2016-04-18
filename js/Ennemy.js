@@ -29,7 +29,6 @@ Ennemy.prototype.create = function create() {
     this.ennemySprite.animations.add('walk', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
     this.ennemySprite.animations.play('walk', animation, true);
-    animation++;
 
 
 	// PHYSICS PROPERTIES

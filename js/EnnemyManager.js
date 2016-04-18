@@ -1,6 +1,6 @@
 var EnnemyManager = function(game) {
-	this.currentSpeed = -200;
-	this.upSpeed = -20;
+	this.currentSpeed = -330;
+	this.upSpeed = -30;
 	this.currentEnnemy = null;
 	this.outOfGamePosition = 50;
 	this.spawnClock = null;
@@ -57,7 +57,7 @@ EnnemyManager.prototype = {
 	},
 	
 	_upCurrentSpeed : function(){
-		if(this.currentSpeed > (this.maxSpeed -1)){
+		if(this.currentSpeed + this.upSpeed > this.maxSpeed){
 			this.currentSpeed += this.upSpeed;
 		}else{
 			this.currentSpeed = this.maxSpeed;
