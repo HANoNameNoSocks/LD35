@@ -110,6 +110,28 @@ Hero.prototype.update = function update() {
 			if(this.alreadyDead == false){
 				this._heroDeathAnimation();
 			}
+		} 
+		else{
+			if(this.spriteFire.animations.isPlaying){
+				this.spriteFire.animations.stop();
+				this.spriteFire.animations.isPlaying = false;
+				this.spriteFire.visible = false;
+				this.sprite.visible = true;
+				this._heroDeathAnimation();
+			}else if(this.spritePlant.animations.isPlaying){
+				this.spritePlant.animations.stop();
+				this.spritePlant.animations.isPlaying = false;
+				this.spritePlant.visible = false;
+				this.sprite.visible = true;
+				this._heroDeathAnimation();
+			}else if(this.spriteWater.animations.isPlaying){
+				this.spriteWater.animations.stop();
+				this.spriteWater.animations.isPlaying = false;
+				this.spriteWater.visible = false;
+				this.sprite.visible = true;
+				this._heroDeathAnimation();
+			}
+
 		}
 	}
 };
