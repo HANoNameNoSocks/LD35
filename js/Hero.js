@@ -187,10 +187,12 @@ Hero.prototype.water = function water() {
 };
 
 Hero.prototype._heroDeathCallback = function _heroDeathCallback() {
+	this.game.time.slowMotion = 1.0;
 	this.spriteDeath.visible = false;
 };
 
 Hero.prototype._heroDeathAnimation = function _heroDeathAnimation() {
+	this.game.time.slowMotion = 4.0;
 	this.sprite.destroy();
 	playerDeathsound.play();
 	this.spriteDeath.visible = true;

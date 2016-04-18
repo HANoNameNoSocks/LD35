@@ -5,6 +5,7 @@ function preload() {
 }
 
 function create() {
+	game.time.advancedTiming = true;
 	game.state.add("Boot",boot);
 	game.state.add("Preload",preload);
 	game.state.add("GameTitle",gameTitle);
