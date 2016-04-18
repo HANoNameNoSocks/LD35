@@ -6,7 +6,7 @@ function Ennemy(game, velocity, type) {
 	this.type = type;
 	this.cursors = null;
 	this.posX = 800;
-	this.posY = 485;
+	this.posY = 435;
 	this.isDead = false;
 	this.isDraw = false;
 	this.isSpriteDestroy = false;

@@ -18,7 +18,7 @@ theGame.prototype = {
   		music = game.add.audio('gameSound');
 
   		game.stage.backgroundColor = "#d2e1c3";
-  		game.add.tileSprite(0, 0, 800, 600, 'background');
+  		game.add.tileSprite(0 , -30, 800, 600, 'background');
 
   		if (music.isPlaying == false)
   		{
