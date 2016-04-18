@@ -8,7 +8,7 @@ FightManager.prototype.create = function create() {
 
 FightManager.prototype.fight = function fight(player,ennemy) {
 
-	if( ( ennemy.getPosX() <= 350 ) && ( ennemy.getPosX() >= 250 ) )
+	if( ( ennemy.getPosX() <= 300 ) && ( ennemy.getPosX() >= 250 ) )
 	{
 		if( ((player.getType() == 'fire') && (ennemy.getType() == 'plant')) || ((player.getType() == 'plant') && (ennemy.getType() == 'water')) || ((player.getType() == 'water') &&  (ennemy.getType() == 'fire')))
 		{

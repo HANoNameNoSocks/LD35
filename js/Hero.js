@@ -89,9 +89,10 @@ Hero.prototype.create = function create() {
 Hero.prototype.update = function update() {
 
 	if(this.isDead == false){
-		
-			this.attackType = null;
-			this.isFighting = false;
+		this.game.time.slowMotion = 1.0;
+	
+		this.attackType = null;
+		this.isFighting = false;
 
 		if (this.shakeWorld > 0) 
 		{
