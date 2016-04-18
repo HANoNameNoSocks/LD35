@@ -42,6 +42,9 @@ Ennemy.prototype.create = function create() {
 
 
 Ennemy.prototype.update = function update() {
+	if(!this.isDraw && !this.isDead){
+		this.ennemySprite.body.velocity.x = this.velocity;
+	}
 };
 
 

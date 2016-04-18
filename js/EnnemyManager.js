@@ -85,7 +85,6 @@ EnnemyManager.prototype = {
 	},
 
 	_isSpriteDestroy: function(){
-
 		return this.currentEnnemy.getIsSpriteDestroy();
 	}
 

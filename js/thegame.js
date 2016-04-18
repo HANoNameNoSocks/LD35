@@ -61,6 +61,7 @@ theGame.prototype = {
 				this.hero.mustBash = true;
 
 				var tempEnnemyVelocity = this.ennemy.ennemySprite.body.velocity.x;
+				this.ennemy.setisDraw(true);
 				this.ennemy.ennemySprite.body.velocity.x = 0;
 
 				if (this.game.time.now - this.timeCheck < 1500) {
@@ -77,6 +78,8 @@ theGame.prototype = {
 					} else {
 						fightResult = -1;
 						this.ennemy.ennemySprite.body.velocity.x = tempEnnemyVelocity;
+						this.ennemy.setisDraw(false);
+						this.hero.setIsDead(true);
 					}
 				}
 				}
