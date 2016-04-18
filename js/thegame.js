@@ -18,11 +18,17 @@ theGame.prototype = {
   		music = game.add.audio('gameSound');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 7dad0c5fd0a4d6df3d875239e9bd8fc31baef150
   		game.stage.backgroundColor = "#d2e1c3";
   		game.add.tileSprite(0 , 0, 800, 600, 'background');
 
+<<<<<<< HEAD
 >>>>>>> dev
+=======
+>>>>>>> 7dad0c5fd0a4d6df3d875239e9bd8fc31baef150
   		if (music.isPlaying == false)
   		{
     	    music.play();
