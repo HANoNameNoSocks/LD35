@@ -15,7 +15,7 @@ var theGame = function(game) {
 theGame.prototype = {
   	create: function() {
 
-  		music = game.add.audio('gameSound');
+  		music = game.add.audio('gameSound',0.2, true);
 
   		game.stage.backgroundColor = "#d2e1c3";
   		game.add.tileSprite(0 , 0, 800, 600, 'background');
