@@ -6,7 +6,7 @@ function Hero(game) {
 	this.spritePlant = null;
 	this.spriteWater = null;
 	this.posX = 130;
-	this.posY = 400;
+	this.posY = 430;
 
 	this.isDead = false;
 	this.isFighting = false;
@@ -44,28 +44,28 @@ Hero.prototype.create = function create() {
 	this.sprite.enableBody = true;
 	this.sprite.animations.play('idle', 5, true);
 	
-	this.spriteDeath = this.game.add.sprite(-80,265, 'hero_death');
+	this.spriteDeath = this.game.add.sprite(-80,285, 'hero_death');
 	this.spriteDeath.animations.add('death',[0,1,2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
 	this.game.physics.arcade.enable(this.spriteDeath);
 	this.spriteDeath.enableBody = true;
 	this.spriteDeath.visible = false;	
 	this.spriteDeath.animations.currentAnim.onComplete.add(this._heroDeathCallback, this);
 	
-	this.spriteFire = this.game.add.sprite(130,290, 'hero_fire');
+	this.spriteFire = this.game.add.sprite(130,330, 'hero_fire');
 	this.spriteFire.animations.add('fire',[0,1,2,3,5,6,7,8,9]);
 	this.game.physics.enable(this.spriteFire);
 	this.spriteFire.enableBody = true;
 	this.spriteFire.visible = false;
 	this.spriteFire.animations.currentAnim.onComplete.add(this._fireCallback, this);
 	
-	this.spritePlant = this.game.add.sprite(130,290, 'hero_plant');
+	this.spritePlant = this.game.add.sprite(130,330, 'hero_plant');
 	this.spritePlant.animations.add('plant',[0,1,2,3,5,6,7,8,9]);
 	this.game.physics.arcade.enable(this.spritePlant);
 	this.spritePlant.enableBody = true;
 	this.spritePlant.visible = false;
 	this.spritePlant.animations.currentAnim.onComplete.add(this._plantCallback, this);
 	
-	this.spriteWater = this.game.add.sprite(130,290, 'hero_water');
+	this.spriteWater = this.game.add.sprite(130,330, 'hero_water');
 	this.spriteWater.animations.add('water',[0,1,2,3,5,6,7,8,9]);
 	this.game.physics.arcade.enable(this.spriteWater);
 	this.spriteWater.enableBody = true;
