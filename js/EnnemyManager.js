@@ -1,6 +1,11 @@
 var EnnemyManager = function(game) {
+<<<<<<< HEAD
 	this.currentSpeed = -200;
 	this.upSpeed = -20;
+=======
+	this.currentSpeed = -330;
+	this.upSpeed = -30;
+>>>>>>> dev
 	this.currentEnnemy = null;
 	this.outOfGamePosition = 50;
 	this.spawnClock = null;
@@ -57,7 +62,11 @@ EnnemyManager.prototype = {
 	},
 	
 	_upCurrentSpeed : function(){
+<<<<<<< HEAD
 		if(this.currentSpeed > (this.maxSpeed -1)){
+=======
+		if(this.currentSpeed + this.upSpeed > this.maxSpeed){
+>>>>>>> dev
 			this.currentSpeed += this.upSpeed;
 		}else{
 			this.currentSpeed = this.maxSpeed;
@@ -85,7 +94,10 @@ EnnemyManager.prototype = {
 	},
 
 	_isSpriteDestroy: function(){
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
 		return this.currentEnnemy.getIsSpriteDestroy();
 	}
 

@@ -6,7 +6,11 @@ function Hero(game) {
 	this.spritePlant = null;
 	this.spriteWater = null;
 	this.posX = 130;
+<<<<<<< HEAD
 	this.posY = 450;
+=======
+	this.posY = 430;
+>>>>>>> dev
 
 	this.isDead = false;
 	this.isFighting = false;
@@ -36,6 +40,10 @@ Hero.prototype.create = function create() {
 	hitFiresound = game.add.audio('hitFire');
 	hitPlantsound = game.add.audio('hitPlant');
 	screenShakesound = game.add.audio('screenShake');
+<<<<<<< HEAD
+=======
+	playerDeathsound = game.add.audio('playerDeath');
+>>>>>>> dev
 
 	this.sprite = this.game.add.sprite(this.posX,this.posY, 'hero_idle');
 	this.sprite.animations.add('idle', [0,1]);
@@ -43,28 +51,44 @@ Hero.prototype.create = function create() {
 	this.sprite.enableBody = true;
 	this.sprite.animations.play('idle', 5, true);
 	
+<<<<<<< HEAD
 	this.spriteDeath = this.game.add.sprite(-80,315, 'hero_death');
+=======
+	this.spriteDeath = this.game.add.sprite(-80,285, 'hero_death');
+>>>>>>> dev
 	this.spriteDeath.animations.add('death',[0,1,2,3,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]);
 	this.game.physics.arcade.enable(this.spriteDeath);
 	this.spriteDeath.enableBody = true;
 	this.spriteDeath.visible = false;	
 	this.spriteDeath.animations.currentAnim.onComplete.add(this._heroDeathCallback, this);
 	
+<<<<<<< HEAD
 	this.spriteFire = this.game.add.sprite(130,340, 'hero_fire');
+=======
+	this.spriteFire = this.game.add.sprite(130,330, 'hero_fire');
+>>>>>>> dev
 	this.spriteFire.animations.add('fire',[0,1,2,3,5,6,7,8,9]);
 	this.game.physics.enable(this.spriteFire);
 	this.spriteFire.enableBody = true;
 	this.spriteFire.visible = false;
 	this.spriteFire.animations.currentAnim.onComplete.add(this._fireCallback, this);
 	
+<<<<<<< HEAD
 	this.spritePlant = this.game.add.sprite(130,340, 'hero_plant');
+=======
+	this.spritePlant = this.game.add.sprite(130,330, 'hero_plant');
+>>>>>>> dev
 	this.spritePlant.animations.add('plant',[0,1,2,3,5,6,7,8,9]);
 	this.game.physics.arcade.enable(this.spritePlant);
 	this.spritePlant.enableBody = true;
 	this.spritePlant.visible = false;
 	this.spritePlant.animations.currentAnim.onComplete.add(this._plantCallback, this);
 	
+<<<<<<< HEAD
 	this.spriteWater = this.game.add.sprite(130,340, 'hero_water');
+=======
+	this.spriteWater = this.game.add.sprite(130,330, 'hero_water');
+>>>>>>> dev
 	this.spriteWater.animations.add('water',[0,1,2,3,5,6,7,8,9]);
 	this.game.physics.arcade.enable(this.spriteWater);
 	this.spriteWater.enableBody = true;
@@ -88,9 +112,16 @@ Hero.prototype.create = function create() {
 Hero.prototype.update = function update() {
 
 	if(this.isDead == false){
+<<<<<<< HEAD
 		
 			this.attackType = null;
 			this.isFighting = false;
+=======
+		this.game.time.slowMotion = 1.0;
+	
+		this.attackType = null;
+		this.isFighting = false;
+>>>>>>> dev
 
 		if (this.shakeWorld > 0) 
 		{
@@ -120,7 +151,11 @@ Hero.prototype._fireCallback = function _fireCallback() {
 
 Hero.prototype.fire = function fire() {
 
+<<<<<<< HEAD
 	if(this.isDead == false){
+=======
+	if(this.isDead == false && this.mustBash == false){
+>>>>>>> dev
 		if(!this.spriteFire.animations.isPlaying && !this.spritePlant.animations.isPlaying && !this.spriteWater.animations.isPlaying){ 
 			this.isFighting = true;
 			this.attackType = "fire";
@@ -144,7 +179,11 @@ Hero.prototype._plantCallback = function _plantCallback() {
 
 Hero.prototype.plant = function plant() {
 
+<<<<<<< HEAD
 	if(this.isDead == false){
+=======
+	if(this.isDead == false && this.mustBash == false){
+>>>>>>> dev
 		if(!this.spriteFire.animations.isPlaying && !this.spritePlant.animations.isPlaying && !this.spriteWater.animations.isPlaying){
 			this.isFighting = true;
 			this.attackType = "plant";
@@ -169,7 +208,11 @@ Hero.prototype._waterCallback = function _waterCallback() {
 
 Hero.prototype.water = function water() {
 
+<<<<<<< HEAD
 	if(this.isDead == false){
+=======
+	if(this.isDead == false && this.mustBash == false){
+>>>>>>> dev
 		if(!this.spriteFire.animations.isPlaying && !this.spritePlant.animations.isPlaying && !this.spriteWater.animations.isPlaying){
 			this.isFighting = true;
 			this.attackType = "water";
@@ -186,11 +229,21 @@ Hero.prototype.water = function water() {
 };
 
 Hero.prototype._heroDeathCallback = function _heroDeathCallback() {
+<<<<<<< HEAD
+=======
+	this.game.time.slowMotion = 1.0;
+>>>>>>> dev
 	this.spriteDeath.visible = false;
 };
 
 Hero.prototype._heroDeathAnimation = function _heroDeathAnimation() {
+<<<<<<< HEAD
 	this.sprite.destroy();
+=======
+	this.game.time.slowMotion = 4.0;
+	this.sprite.destroy();
+	playerDeathsound.play();
+>>>>>>> dev
 	this.spriteDeath.visible = true;
 	this.spriteDeath.animations.play('death', 20, false, false, false);
 	this.alreadyDead = true;

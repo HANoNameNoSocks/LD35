@@ -6,7 +6,11 @@ function Ennemy(game, velocity, type) {
 	this.type = type;
 	this.cursors = null;
 	this.posX = 800;
+<<<<<<< HEAD
 	this.posY = 485;
+=======
+	this.posY = 465;
+>>>>>>> dev
 	this.isDead = false;
 	this.isDraw = false;
 	this.isSpriteDestroy = false;
@@ -19,6 +23,10 @@ var animation = 15;
 
 
 Ennemy.prototype.create = function create() {
+<<<<<<< HEAD
+=======
+	ennemyDeathsound = game.add.audio('ennemyDeath');
+>>>>>>> dev
 
 	// PHYSICS PROPERTIES
  	spawnEnnemysound = game.add.audio('spawnEnnemy');
@@ -29,7 +37,10 @@ Ennemy.prototype.create = function create() {
     this.ennemySprite.animations.add('walk', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
     this.ennemySprite.animations.play('walk', animation, true);
+<<<<<<< HEAD
     animation++;
+=======
+>>>>>>> dev
 
 
 	// PHYSICS PROPERTIES
@@ -43,6 +54,12 @@ Ennemy.prototype.create = function create() {
 
 
 Ennemy.prototype.update = function update() {
+<<<<<<< HEAD
+=======
+	if(!this.isDraw && !this.isDead){
+		this.ennemySprite.body.velocity.x = this.velocity;
+	}
+>>>>>>> dev
 };
 
 
@@ -85,23 +102,55 @@ Ennemy.prototype.destroy = function destroy () {
     this.ennemySprite.destroy();
 };
 
+<<<<<<< HEAD
+=======
+Ennemy.prototype._flashBeforeDeathTintActivated = function _flashBeforeDeathTintActivated(){
+	this.ennemySprite.tint= 0xffff00;
+};
+Ennemy.prototype._flashBeforeDeathTintDeactivated = function _flashBeforeDeathTintDeactivated(){
+	this.ennemySprite.tint= 0xffffff;
+};
+
+Ennemy.prototype._flashBeforeDeath = function _flashBeforeDeath(){
+	for(var i=0 ; i<5 ; i++){
+		var tint = 1000 + 2 * i * 100;
+		game.time.events.add(tint, this._flashBeforeDeathTintActivated, this);
+		var noTint = 1000 + (2 * i + 1) * 100;
+  		game.time.events.add(noTint, this._flashBeforeDeathTintDeactivated, this);
+	}
+};
+
+>>>>>>> dev
 Ennemy.prototype.kill = function kill () {
   	var start = new Date().getTime();
  	var oldX = this.ennemySprite.x;
 
   	this.ennemySprite.destroy();
   	this.setIsSpriteDestroy(true);
+<<<<<<< HEAD
   	this.ennemySprite = game.add.sprite(oldX, this.posY, arrDead[this.type]);
   	this.ennemySprite.animations.add('dead', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
  	this.ennemySprite.animations.play('dead', 15, false, false,false);
   	this.game.physics.arcade.enable(this.ennemySprite);
 
+=======
+  	ennemyDeathsound.play();
+  	this.ennemySprite = game.add.sprite(oldX, this.posY - 40, arrDead[this.type]);
+  	this.ennemySprite.animations.add('dead', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
+ 	this.ennemySprite.animations.play('dead', 15, false, false,false);
+  	this.game.physics.arcade.enable(this.ennemySprite);
+  	this._flashBeforeDeath();
+>>>>>>> dev
 	this.ennemySprite.enableBody = true;
 	this.ennemySprite.body.velocity.x = 0;
     game.time.events.add(2000, this.destroy, this);
 
+<<<<<<< HEAD
 
   	};
+=======
+};
+>>>>>>> dev
 
 
 

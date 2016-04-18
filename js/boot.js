@@ -9,7 +9,10 @@ boot.prototype = {
   	create: function(){
 		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 		this.scale.pageAlignHorizontally = true;
+<<<<<<< HEAD
 		this.scale.setScreenSize();
+=======
+>>>>>>> dev
 		this.game.state.start("Preload");
 	}
 }

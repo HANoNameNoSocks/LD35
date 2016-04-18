@@ -17,6 +17,12 @@ theGame.prototype = {
 
   		music = game.add.audio('gameSound');
 
+<<<<<<< HEAD
+=======
+  		game.stage.backgroundColor = "#d2e1c3";
+  		game.add.tileSprite(0 , 0, 800, 600, 'background');
+
+>>>>>>> dev
   		if (music.isPlaying == false)
   		{
     	    music.play();
@@ -58,6 +64,10 @@ theGame.prototype = {
 				this.hero.mustBash = true;
 
 				var tempEnnemyVelocity = this.ennemy.ennemySprite.body.velocity.x;
+<<<<<<< HEAD
+=======
+				this.ennemy.setisDraw(true);
+>>>>>>> dev
 				this.ennemy.ennemySprite.body.velocity.x = 0;
 
 				if (this.game.time.now - this.timeCheck < 1500) {
@@ -74,6 +84,11 @@ theGame.prototype = {
 					} else {
 						fightResult = -1;
 						this.ennemy.ennemySprite.body.velocity.x = tempEnnemyVelocity;
+<<<<<<< HEAD
+=======
+						this.ennemy.setisDraw(false);
+						this.hero.setIsDead(true);
+>>>>>>> dev
 					}
 				}
 				}
